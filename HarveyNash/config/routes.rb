@@ -53,4 +53,11 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  # API
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      get 'hello' => 'foo#hello'
+    end
+  end
 end

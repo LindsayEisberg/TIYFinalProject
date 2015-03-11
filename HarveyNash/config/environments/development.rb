@@ -38,4 +38,16 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # In development mode, the frontend code runs on port 9000 and our
+  # Rails backend runs on port 3000. This causes CORS problem, to
+  # solve it simply add the gem 'rack-cors' in your Gemfile's
+  # development group and add this config to your development.rb
+  # config file: http://rockyj.in/2013/10/24/angular_rails.html
+  config.middleware.use Rack::Cors do
+    allow do
+      origins 'localhost:9000'
+      resource '*', :headers => :any, :methods => [:get, :post, :options, :delete]
+    end
+  end
 end
