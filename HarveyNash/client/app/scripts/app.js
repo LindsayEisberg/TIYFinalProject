@@ -2,14 +2,15 @@
 
 /**
  * @ngdoc overview
- * @name harveyNashApp
+ * @name app
  * @description
- * # harveyNashApp
+ * # app
  *
  * Main module of the application.
  */
 angular
-  .module('harveyNashApp', [
+  .module('app', [
+    'opentok',
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -23,11 +24,14 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+      .when('/room', {
+        templateUrl: 'views/video.html',
+        controller: 'VideoCtrl'
       })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+      .when('/not-found', {
+         templateUrl: "views/404.html"
+       })
+       .otherwise({
+         redirectTo: '/not-found'
+       });
+   });

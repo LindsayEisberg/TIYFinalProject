@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name app.controller:MainCtrl
+ * @name app.controller:VideoCtrl
  * @description
- * # MainCtrl
+ * # VideoCtrl
  * Controller of the app
  */
 angular.module('app')
-  .controller('MainCtrl', function ($scope) {
+  .controller('VideoCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

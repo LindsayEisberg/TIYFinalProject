@@ -1,0 +1,27 @@
+<html>
+  <head></head>
+  <body>
+    <div id='myPublisherDiv'></div>
+    <div id='subscribersDiv'></div>
+
+    <script src='//static.opentok.com/webrtc/v2.2/js/opentok.min.js'></script>
+    <script>
+      var apiKey = '45176582';
+      var sessionId = '1_MX40NTE3NjU4Mn5-MTQyNjAwMDQyNjU4M35wdEJIamlWUE5EeHpDeDQ0UE1OUlBtdnV-fg';
+      var token = 'T1==cGFydG5lcl9pZD00NTE3NjU4MiZzaWc9YWE0NTQ3OWE0MGE1ZTYzYWQxODc3NTY3ZWQwYTEyNDJhN2I2Njc4Yzpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTFfTVg0ME5URTNOalU0TW41LU1UUXlOakF3TURReU5qVTRNMzV3ZEVKSWFtbFdVRTVFZUhwRGVEUTBVRTFPVWxCdGRuVi1mZyZjcmVhdGVfdGltZT0xNDI2MTE1OTg3Jm5vbmNlPTAuMzA3ODY3MzUzODc1MTMzNTM=';
+      var session = OT.initSession(apiKey, sessionId);
+      session.on({
+          streamCreated: function(event) {
+            session.subscribe(event.stream, 'subscribersDiv', {insertMode: 'append'});
+          }
+      });
+      session.connect(token, function(error) {
+        if (error) {
+          console.log(error.message);
+        } else {
+          session.publish('myPublisherDiv', {width: 320, height: 240});
+        }
+      });
+    </script>
+  </body>
+</html>    
