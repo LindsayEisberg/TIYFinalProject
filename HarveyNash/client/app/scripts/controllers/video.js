@@ -7,12 +7,12 @@
  * # VideoCtrl
  * Controller of the app
  */
-(function () {
-  "use strict";
-
-  angular.module('app')
-    .controller('VideoCtrl', function (VideoService, $scope, OTSession) {
-      var video = this;
-      $scope.streams = OTSession.streams;
-    });
-})();
+// (function () {
+//   "use strict";
+//
+//   angular.module('app')
+//     .controller('VideoCtrl', function (VideoService, $scope, OTSession) {
+//       var video = this;
+//
+//     });
+// })();

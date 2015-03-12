@@ -28,6 +28,10 @@ angular
         templateUrl: 'views/video.html',
         controller: 'VideoCtrl'
       })
+      .when('/register', {
+        templateUrl: 'views/register.html',
+        controller: 'RegisterController as register'
+      })
       .when('/not-found', {
          templateUrl: "views/404.html"
        })

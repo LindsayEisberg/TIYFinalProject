@@ -11,5 +11,5 @@ angular.module('app')
   .controller('MainCtrl', function ($scope, $location) {
     $scope.joinRoom = function () {
       $location.path('/room');
-    }
+    };
   });

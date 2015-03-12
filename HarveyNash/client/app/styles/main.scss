@@ -1,67 +1,110 @@
 // bower:scss
 // endbower
 
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+//mixins
+@mixin transition($transform, $opacity) {
+  -webkit-transition: ($transform, $opacity);
+  -moz-transition:($transform, $opacity);
+  transition:($transform, $opacity);
 }
 
-body {
+@mixin transform($transform) {
+  -webkit-transform:($transform);
+  -moz-transform:($transform);
+  transform:($transform);
+}
+
+$minion: 'minion-pro', serif;
+$avenir: 'avenir', "proxima-nova",sans-serif;
+
+//main page
+
+
+#large-header {
   padding: 0;
+  margin: 0;
+background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url(../images/main2.jpg);
+background-size: cover;
+background-repeat: no-repeat;
+height: auto;
+min-height: 1000px;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
+.main-title {
+  position: absolute;
+    margin: 0;
+    padding: 0;
+    color: white;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+    text-transform: uppercase;
+    z-index: 100;
+    font-family: $avenir;
+    font-size: 5em;
 }
 
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 10px;
-
-  /* Make the masthead heading the same height as the navigation */
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
+nav {
+  a {
+    position: relative;
+    display: inline-block;
+    margin: 15px 25px;
+    outline: none;
+    color: beige;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
+    font-size: 1.35em;
+    font-family: $minion;
+    &:hover {
+      outline: none;
+    }
+    &:focus {
+      outline: none;
+    }
   }
 }
 
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
-}
-
-.container-narrow > hr {
-  margin: 30px 0;
-}
-
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
-
-  .btn {
-    font-size: 21px;
-    padding: 14px 24px;
+.mainNav { // nav class cl-effect-1
+  a::before {
+    display: inline-block;
+    opacity: 0;
+    @include transition(transform 0.3s, opacity 0.2s);
+  }
+  a::after {
+    display: inline-block;
+    opacity: 0;
+    @include transition(transform 0.3s, opacity 0.2s);
   }
 }
 
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
+.mainNav a::before {
+  margin-right: 10px;
+  content: '[';
+  @include transform(translateX(20px));
+}
 
-  p + h4 {
-    margin-top: 28px;
+.mainNav a::after {
+  margin: 10px;
+  content: ']';
+  @include transform(translateX(-20px));
+}
+
+.mainNav a:hover::before, .mainNav a:hover::after, .mainNav a:focus::before, .mainNav a:focus::after {
+  opacity: 1;
+  @include transform(translateX(0px));
+}
+
+.right {
+  float: right;
+}
+
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
   }
 }
 

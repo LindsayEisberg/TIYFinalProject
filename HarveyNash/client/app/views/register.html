@@ -1,0 +1,14 @@
+<div ng-controller="RegisterController as register">
+
+<article class="newUser">
+  <h2>New Listing</h2>
+  <hr />
+  <form ng-submit="register.addNewUser(newUser)" class="addUser">
+    <input type="text" ng-model="register.name" placeholder="Name">
+    <input type="email" ng-model="register.email" placeholder="Email">
+    <input type="text" ng-model="register.username" placeholder="Username">
+    <input type="text" ng-model="register.password" placeholder="Password">
+    <button type="submit">Add New Listing</button>
+  </form>
+</article>
+</div>
