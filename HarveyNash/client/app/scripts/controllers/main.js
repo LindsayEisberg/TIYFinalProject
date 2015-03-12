@@ -8,10 +8,8 @@
  * Controller of the app
  */
 angular.module('app')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MainCtrl', function ($scope, $location) {
+    $scope.joinRoom = function () {
+      $location.path('/room');
+    }
   });

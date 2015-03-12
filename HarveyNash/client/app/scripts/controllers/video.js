@@ -1,4 +1,4 @@
-'use strict';
+
 
 /**
  * @ngdoc function
@@ -7,11 +7,12 @@
  * # VideoCtrl
  * Controller of the app
  */
-angular.module('app')
-  .controller('VideoCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+(function () {
+  "use strict";
+
+  angular.module('app')
+    .controller('VideoCtrl', function (VideoService, $scope, OTSession) {
+      var video = this;
+      $scope.streams = OTSession.streams;
+    });
+})();

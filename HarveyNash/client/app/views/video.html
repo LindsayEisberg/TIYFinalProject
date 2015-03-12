@@ -1,1 +1,16 @@
 <p>This is the video view.</p>
+
+<script>
+  var apiKey = '45176582';
+  var sessionId = '1_MX40NTE3NjU4Mn5-MTQyNjEzNjQwOTA2M35OWEJEM1hjSVU5NnRsVkRLc3had1ZIZ2p-fg';
+  var token = 'T1==cGFydG5lcl9pZD00NTE3NjU4MiZzaWc9NDYxODY0N2ExYWNmZDQ3YTgyNDcwY2VhODNhYTFiMzRmYTE3MzdmZDpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTFfTVg0ME5URTNOalU0TW41LU1UUXlOakV6TmpRd09UQTJNMzVPV0VKRU0xaGpTVlU1Tm5Sc1ZrUkxjM2hhZDFaSVoycC1mZyZjcmVhdGVfdGltZT0xNDI2MTM2NDEwJm5vbmNlPTAuOTQ3NDY4NTE5MjA0MTUwMyZleHBpcmVfdGltZT0xNDI2MTQwMDAw';
+
+  var session = OT.initSession(apiKey, sessionId);
+  session.connect( token, function(err) {
+    if(err) {
+      alert('there is an error');
+    } else {
+      session.publish();
+    }
+  });
+</script>
