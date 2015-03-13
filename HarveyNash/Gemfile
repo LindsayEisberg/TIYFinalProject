@@ -10,6 +10,12 @@ gem 'spring', :group => :development
 
 gem 'sqlite3'
 
+# we need to get some secret API keys in a development environment
+gem 'dotenv-rails', :groups => [:development, :test], :require => 'dotenv/rails-now'
+
+# we are going to resolve rooms and all that stuff on the server
+# side... there's a gem for that :-)
+gem 'opentok'
 
 
 # To use ActiveModel has_secure_password

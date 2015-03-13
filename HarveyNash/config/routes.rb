@@ -57,7 +57,13 @@ Rails.application.routes.draw do
   # API
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
+      # hello world
       get 'hello' => 'foo#hello'
+
+      # sessions
+      get 'sessions/active' => 'sessions#active_sessions'
+      get 'sessions/open' => 'sessions#open'
+      get 'sessions/:id/close' => 'sessions#close'
     end
   end
 end
