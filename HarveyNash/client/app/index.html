@@ -14,6 +14,7 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/CodeMirror/lib/codemirror.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -63,13 +64,19 @@
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <script src="scripts/controllers/video.js"></script>
-        <script src="scripts/services/video.js"></script>
-        <script src="scripts/controllers/register.controller.js"></script>
-        <script src="scripts/services/register.service.js"></script>
+        <script src="app.js"></script>
+        <script src="common/main.js"></script>
+        <script src="register/register.module.js"></script>
+        <script src="register/register.controller.js"></script>
+        <script src="register/register.service.js"></script>
+        <script src="user/user.module.js"></script>
+        <script src="user/user.controller.js"></script>
+        <script src="user/user.service.js"></script>
+        <script src="auditorium/audit.module.js"></script>
+        <script src="auditorium/audit.controller.js"></script>
+        <script src="auditorium/audit.service.js"></script>
+
+
 
         <!-- endbuild -->
 </body>
