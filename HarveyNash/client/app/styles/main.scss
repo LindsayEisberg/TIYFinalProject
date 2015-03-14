@@ -40,9 +40,24 @@
 }
 $minion: 'minion-pro', serif;
 $avenir: 'avenir', "proxima-nova",sans-serif;
-$dark:#444444;
-$light:#eeeeee;
-$accent: #5BA97E;
+$lightest: #f6f7f7;
+$light2: #D2D4D5;
+$gray: #393939;
+$dark: #221f1f;
+$accent: #d2Af3c;
+
+
+
+//defaults
+h1, h2, h3, h4, h5, h6 {
+  font-family: $avenir;
+  color: $dark;
+}
+
+a {
+  font-family: $minion;
+  color: $lightest;
+}
 
 //main page
 #large-header {
@@ -59,43 +74,26 @@ $accent: #5BA97E;
     background-size: cover;
 
   }
-/*   padding: 0;
-margin: 0;
-background: -webkit-linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url(../images/group1.jpg);
-background: -o-linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url(../images/group1.jpg);
-background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url(../images/group1.jpg);
-background-size: cover;
-background-repeat: no-repeat;
-background-position: top center;
-} */
 
-/* section {
-  display: flex;
-  min-height: 100vh;
-  .main-title {
-    align-self: center;
-    font-size: 5em;
-    font-weight: 800px;
-    text-transform: uppercase;
-    width: 100%;
-    text-align: center;
-  }
-}
- */
 .main-title {
     position: absolute;
     margin: 0;
     padding: 0;
-    color: white;
+    color: $accent;
     left: 50%;
     top: 50%;
     -webkit-transform: translate3d(-50%, -50%, 0);
     transform: translate3d(-50%, -50%, 0);
     text-transform: uppercase;
+    font-weight: 900;
     z-index: 100;
     font-family: $avenir;
     font-size: 5em;
+    border-top: 2px solid $accent;
+    border-bottom: 2px solid $accent;
+    padding: 5px;
 }
+
 
 nav {
   a {
@@ -103,7 +101,7 @@ nav {
     display: inline-block;
     margin: 15px 25px;
     outline: none;
-    color: white;
+    color: $lightest;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -112,24 +110,24 @@ nav {
     font-family: $minion;
     &:hover {
       outline: none;
-      color: white;
+      color: $lightest;
     }
     &:focus {
       outline: none;
-      color: white;
+      color: $lightest;
     }
   }
 }
 
 .audNav {
-  background: rgba(0,0,0, 0.3);
+  background: rgba(34,31,31, 0.3);
   border: 0px;
   border-radius: 0px;
   margin: 0;
   padding: 15px 0 15px 0;
 }
 
-.mainNav { // nav class cl-effect-1
+.mainNav {
   a::before {
     display: inline-block;
     opacity: 0;
@@ -170,6 +168,83 @@ a {
   }
 }
 
+//Login Form
+#mainLog {
+  left: 50%;
+  position: fixed;
+  top: 50%;
+  @include transform(translate(-50%, -60%));
+  }
+#loginContent {
+  height: 425px;
+
+}
+.loginHeader {
+  padding: 0;
+  border: 0;
+
+}
+.loginTitle {
+  font-family: $avenir;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #282830;
+	border-radius: 5px 5px 0 0;
+  padding: 25px;
+
+}
+.loginBody:before {
+  background-color: #ffffff;
+  content: "";
+  height: 20px;
+  left: 50%;
+  margin: -4px 0 0 -4px;
+  position: absolute;
+  top: 0;
+  width: 20px;
+  @include transform(rotate(45deg));
+
+}
+.loginBody {
+  .loginForm{
+    padding: 20px 0 20px 0;
+    input[type="email"] {
+      border: 1px solid #dcdcdc;
+      padding: 12px 10px;
+      width: 100%;
+      border-radius: 0 0 3px 3px;
+      margin-top: 10%;
+      margin-bottom: 5%;
+    }
+    input[type="password"] {
+      border: 1px solid #dcdcdc;
+      padding: 12px 10px;
+      width: 100%;
+      border-radius: 0px 0px 3px 3px;
+    }
+  }
+}
+
+.loginFooter {
+  border: 0;
+  margin-top: 2%;
+  input[type="submit"] {
+    background: #1dabb8;
+    border-radius: 3px;
+    color: #ffffff;
+    float: right;
+    padding: 10px;
+    &:hover {
+      background: #198d98;
+      @include trans(all 0.5s ease);
+    }
+  }
+}
+
+//browse
+#browseSession {
+  border: 2px solid $dark;
+}
 
 /* Responsive: Portrait tablets and up */
 @media screen and (max-width: 1024px) {

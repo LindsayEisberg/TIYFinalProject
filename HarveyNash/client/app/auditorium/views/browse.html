@@ -1,0 +1,14 @@
+<div class="container" ng-controller="RoomController as roomCtrl">
+  <h2>What's Coming Up?</h2>
+  <h4>With Auditorium, we give you the option to explore and sign up for all upcoming sessions.</h4>
+  <div class="row browse">
+    <article class="col-md-3" id="browseSession" ng-repeat="session in roomCtrl.browseSessions">
+      <h3>{{session.name}}</h3>
+      <p>{{session.moderator}}</p>
+      <p>{{session.image}}</p>
+      <p>{{session.date}}</p>
+      <p>{{session.description}}</p>
+      <button class="btn">Join Session</button>
+    </article>
+  </div>
+</div>

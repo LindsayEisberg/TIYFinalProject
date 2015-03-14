@@ -16,9 +16,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<div class="navContainer">
 				<nav class="mainNav">
-						<a href="#">BROWSE LIBRARY</a>
+						<a href="#/browse">BROWSE LIBRARY</a>
 						<span class="right">
-							<a href="#/" id="toggle-login" ng-click="main.toggleShow()">LOGIN</a>
+							<a href="#/" id="toggle-login" ng-click="main.toggleShow()" data-toggle="modal" data-target="#myModal">LOGIN</a>
 							<a href="#/register">REGISTER</a>
 						</span>
 				</nav>
@@ -26,19 +26,26 @@
     </div>
     </div><!-- /.navbar-collapse -->
 </nav>
-<div class="row">
-	<div class="col-md-7"></div>
-	<div class="col-md-4">
-		<div id="login" ng-hide="main.login">
-			<h1>Log in</h1>
-			<form>
-				<input type="email" placeholder="Email" />
-				<input type="password" placeholder="Password" />
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" id="mainLog">
+		<div class="modal-content" id="loginContent">
+			<div class="loginHeader modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3 class="modal-title loginTitle">Sign In</h3>
+			</div>
+			<div class="modal-body loginBody">
+				<form class="loginForm">
+					<input type="email" placeholder="Email" />
+					<input type="password" placeholder="Password" />
+				</form>
+			</div>
+			<div class="modal-footer loginFooter">
 				<input type="submit" value="Log in" />
-			</form>
+			</div>
 		</div>
 	</div>
-	<div class="col-md-1"></div>
 </div>
+
     <h1 class="main-title">Auditorium</h1>
 </div>
