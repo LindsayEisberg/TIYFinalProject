@@ -32,16 +32,19 @@
 		<div class="modal-content" id="loginContent">
 			<div class="loginHeader modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h3 class="modal-title loginTitle">Sign In</h3>
+				<h3 class="modal-title loginTitle">Login</h3>
 			</div>
 			<div class="modal-body loginBody">
 				<form class="loginForm">
-					<input type="email" placeholder="Email" />
-					<input type="password" placeholder="Password" />
+					<div class="inputs"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><input type="email" placeholder="Email" /></div>
+					<div class="inputs"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span><input type="password" placeholder="Password" /></div>
 				</form>
 			</div>
 			<div class="modal-footer loginFooter">
-				<input type="submit" value="Log in" />
+				<button type="submit" class="btn submitBtn">LOGIN</button>
+				<div class="mainNav">
+				<a href="#/register">Don't have an account yet?</a>
+				</div>
 			</div>
 		</div>
 	</div>

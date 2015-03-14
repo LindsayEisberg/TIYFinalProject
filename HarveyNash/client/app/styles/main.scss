@@ -173,28 +173,31 @@ a {
   left: 50%;
   position: fixed;
   top: 50%;
-  @include transform(translate(-50%, -60%));
+  @include transform(translate(-33%, -60%));
   }
 #loginContent {
   height: 425px;
+  width: 400px;
+  background: rgba(210, 212, 213, 0.8);
 
 }
 .loginHeader {
   padding: 0;
   border: 0;
+  background: rgba(210, 212, 213, 1.0);
+
 
 }
 .loginTitle {
   font-family: $avenir;
   text-align: center;
   text-transform: uppercase;
-  background-color: #282830;
 	border-radius: 5px 5px 0 0;
   padding: 25px;
-
+  font-size: 2.4em;
 }
 .loginBody:before {
-  background-color: #ffffff;
+  background-color: $accent;
   content: "";
   height: 20px;
   left: 50%;
@@ -207,36 +210,58 @@ a {
 }
 .loginBody {
   .loginForm{
-    padding: 20px 0 20px 0;
+    padding: 5px 0 5px 0;
     input[type="email"] {
       border: 1px solid #dcdcdc;
       padding: 12px 10px;
-      width: 100%;
+      width: 82%;
       border-radius: 0 0 3px 3px;
       margin-top: 10%;
       margin-bottom: 5%;
+      background-color: $lightest;
     }
     input[type="password"] {
       border: 1px solid #dcdcdc;
       padding: 12px 10px;
-      width: 100%;
+      width: 82%;
       border-radius: 0px 0px 3px 3px;
+      background-color: $lightest;
+
     }
+  }
+}
+
+.inputs {
+  .glyphicon-user {
+    background-color: $accent;
+    padding: 15px 25px 17px 25px;
+  }
+  .glyphicon-lock {
+    @extend .glyphicon-user;
   }
 }
 
 .loginFooter {
   border: 0;
   margin-top: 2%;
-  input[type="submit"] {
-    background: #1dabb8;
-    border-radius: 3px;
-    color: #ffffff;
+  .submitBtn {
+    background: rgba(210, 175, 60, 1.0);
+    color: $lightest;
+    border-radius: 0px;
     float: right;
     padding: 10px;
+    width: 100%;
     &:hover {
-      background: #198d98;
+      background: $accent;
+      opacity: 1.0;
       @include trans(all 0.5s ease);
+    }
+  }
+  a {
+    font-size: 16px;
+margin-right: -20px;
+    &:hover {
+      color: $lightest;
     }
   }
 }
