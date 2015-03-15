@@ -60,10 +60,17 @@ Rails.application.routes.draw do
       # hello world
       get 'hello' => 'foo#hello'
 
+      # auth
+      post 'auth' => 'auth#authenticate'
+
+      # users
+      post 'register' => 'users#create'
+
       # sessions
       get 'sessions/active' => 'sessions#active_sessions'
       get 'sessions/open' => 'sessions#open'
       get 'sessions/:id/close' => 'sessions#close'
+
     end
   end
 end

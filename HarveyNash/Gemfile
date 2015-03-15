@@ -17,9 +17,11 @@ gem 'dotenv-rails', :groups => [:development, :test], :require => 'dotenv/rails-
 # side... there's a gem for that :-)
 gem 'opentok'
 
+# json web token
+gem 'jwt'
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
@@ -34,4 +36,9 @@ gem 'opentok'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 # prevent CORS issues in development environment
-gem "rack-cors", :group => :development
+gem "rack-cors"
+
+# setup testing environment
+group :test do
+  gem 'rspec-rails'
+end
