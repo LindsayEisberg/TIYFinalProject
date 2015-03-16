@@ -6,7 +6,7 @@ describe 'User' do
     context 'existing user' do
       it "should respond with user info for existing user" do
         user = FactoryGirl.create(:user)
-        get "/api/v1/users/#{user.id}"
+        get "/api/v1/profile/#{user.id}"
         data = JSON.parse(response.body)
         expect(response.status).to eq 200
         expect(data["email"]).to eq "tnesland@gmail.com"
@@ -19,7 +19,7 @@ describe 'User' do
 
     context 'non-existent user' do
       it "should respond with error for non-existent user" do
-        get "/api/v1/users/100" # no user exists w/ ID of 100
+        get "/api/v1/profile/100" # no user exists w/ ID of 100
         data = JSON.parse(response.body)
         expect(response.status).to eq 404
         expect(data["errors"]).to include "User not found."
@@ -31,7 +31,7 @@ describe 'User' do
   describe '#update' do
     it "should update" do
       user = FactoryGirl.create(:user)
-      patch "/api/v1/users/#{user.id}", { blurb: "NewBlurb" }
+      patch "/api/v1/profile/#{user.id}", { blurb: "NewBlurb" }
       expect(user.blurb).to eq "NewBlurb"
     end
   end
