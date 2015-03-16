@@ -3,13 +3,7 @@
 
   angular.module('app')
     .factory('UserService', function($scope, $rootScope, $http, LocalService) {
-      var users = [
-        {
-          name: "Lindsay",
-          email: "lindsay.eisberg@gmail.com",
-          username: "testUser"
-        }
-      ];
+      var url = "http://localhost:3000/profile"
 
       return {
         user: function() {
@@ -22,16 +16,16 @@
       };
 
       var getUsers = function () {
-        return users;
+        return $http.get(url);
       };
 
-      var getSingleUser = function(index) {
-        return users[index];
+      var getSingleUser = function(id) {
+        return $http.get(url + '/' + id);
       };
 
       return {
         getUsers: getUsers,
-        getUser: getSingleUser
+        getSingleUser: getSingleUser
       }
     });
 })();

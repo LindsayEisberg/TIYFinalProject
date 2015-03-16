@@ -2,7 +2,7 @@
   "use strict";
 
   angular.module('app')
-    .factory('AuthService', function ($http, LocalService, AccessLevels) {
+    .factory('AuthService', function ($http, LocalService) {
       function checkTokenStatus(token)  {
         $http.get('api/v1/auth/token_status?token=' + token);
       }
@@ -15,18 +15,18 @@
       }
 
       return {
-        authorize: function(access) {
-          if(access === AccessLevels.user) {
-            return this.isAuthenticated();
-          } else {
-            return true;
-          }
-        },
+        // authorize: function(access) {
+        //   if(access === AccessLevels.user) {
+        //     return this.isAuthenticated();
+        //   } else {
+        //     return true;
+        //   }
+        // },
         isAuthenticated: function () {
           return LocalService.get('auth_token');
         },
         login: function(credentials) {
-          var login = $http.post('api/v1/auth', credentials);
+          var login = $http.post('http://localhost:3000/api/v1/auth', credentials);
           login.success(function(result) {
             LocalService.set('auth_token', JSON.stringify(result));
           });
@@ -37,7 +37,7 @@
         },
         register: function(formData) {
           LocalService.unset('auth_token');
-          var register = $http.post('api/v1/register', formData);
+          var register = $http.post('http://localhost:3000/api/v1/register', formData);
           register.success(function(result) {
             LocalService.set('auth_token', JSON.stringify(result));
           });
@@ -48,6 +48,7 @@
 
     .factory('AuthInterceptor', function($q, $injector, $location) {
       var LocalService = $injector.get('LocalService');
+      var token = LocalService.get('auth_token');
 
       return {
         request: function(config) {

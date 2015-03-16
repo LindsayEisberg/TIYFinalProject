@@ -20,18 +20,18 @@ angular
     'ngMessages'
 
   ])
-  .config(function ($routeProvider, authProvider, $httpProvider, $locationProvider, jwtInterceptorProvider) {
+  .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'AuthController as AuthCtrl'
+        controller: 'MainController as mainCtrl'
       })
       .when('/login', {
-        templateUrl: 'views/login.html',
+        templateUrl: 'views/main.html',
         controller: 'LoginController as loginCtrl'
       })
       .when('/register', {
-        templateUrl: 'views/register.html',
+        templateUrl: 'views/main.html',
         controller: 'AuthController as AuthCtrl'
       })
       .when('/auditorium/:roomId', {

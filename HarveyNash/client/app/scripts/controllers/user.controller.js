@@ -5,22 +5,28 @@
     .controller('UserController', function(UserService, $scope, $location, $routeParams) {
       var userCtrl = this;
 
-      userCtrl.users = UserService.getUsers();
+      UserService.getUsers().success(function (data) {
+        userCtrl.users = data;
+      });
 
-      userCtrl.singleItem = UserService.getUser($routeParams.userId);
-      userCtrl.go = function (index) {
-        $location.path('profile' + index);
-      }
+      UserService.getSingleUser($routeParams.userId).success(function(data) {
+        userCtrl.singleUser = data;
+      });
+
+      userCtrl.currentIndex = $routeParams.userId;
+
+      // userCtrl.singleItem = UserService.getUser($routeParams.userId);
+      // userCtrl.go = function (index) {
+      //   $location.path('profile' + index);
+      // }
 
       console.log('single profile index is: ', userCtrl.singleItem);
 
 
 
+
     });
 })();
-
-
-
 
 
 

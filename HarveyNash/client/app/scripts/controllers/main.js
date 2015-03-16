@@ -13,11 +13,11 @@
   "use strict";
 
   angular.module('app')
-    .controller('MainCtrl', function($scope, $location) {
-      var main = this;
-      main.login = true;
-      main.toggleShow = function () {
-        main.login = main.login === false ? true: false;
-      }
+    .controller('MainController', function($scope, $location) {
+      // var mainCtrl = this;
+      // mainCtrl.login = true;
+      // mainCtrl.toggleShow = function () {
+      //   main.login = main.login === false ? true: false;
+      // };
     });
 })();
