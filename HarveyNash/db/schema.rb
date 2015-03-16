@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150315133601) do
+ActiveRecord::Schema.define(version: 20150316193412) do
 
   create_table "sessions", force: :cascade do |t|
     t.string   "session_id"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20150315133601) do
     t.string   "password_salt"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.text     "blurb"
   end
 
 end
