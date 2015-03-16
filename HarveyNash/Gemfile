@@ -25,6 +25,9 @@ gem 'bcrypt', '~> 3.1.7'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
+# Actually, I'm gonna use RABL
+gem 'rabl'
+gem 'oj'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -41,4 +44,10 @@ gem "rack-cors"
 # setup testing environment
 group :test do
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem 'shoulda'
 end
+
+# use byebug to help debug
+gem "byebug", :groups => [:development, :test]
