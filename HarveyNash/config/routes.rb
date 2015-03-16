@@ -64,6 +64,7 @@ Rails.application.routes.draw do
       post 'auth' => 'auth#authenticate'
 
       # users
+      get 'users' => 'users#index'
       post 'register' => 'users#create'
 
       # sessions

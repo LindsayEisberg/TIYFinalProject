@@ -2,14 +2,22 @@ require 'rails_helper'
 
 describe 'Register' do
   describe '#create' do
-    let(:params) {{format: :json, user: {
-                                         username: 'tnesland',
-                                         email: 'tnesland@gmail.com',
-                                         password: 'password'
-                                        }}}
-    it "should return 200 with valid params" do
-      post "/api/v1/register", params
-      expect(response).to be_success
+
+    it "should return a 200 status with valid parameters" do
+      post "/api/v1/register", {
+                                email: 'tnesland@gmail.com',
+                                username: 'tnesland',
+                                password: 'password'
+                               }
+      expect(response.status).to eq 200
+    end
+
+    it "should return a 406 status with invalid parameters" do
+      post "/api/v1/register", {
+                                email: 'tnesland@gmail.com'
+                               }
+
+      expect(response.status).to eq 406
     end
   end
 end
