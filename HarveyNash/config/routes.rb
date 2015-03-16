@@ -65,6 +65,9 @@ Rails.application.routes.draw do
 
       # users
       get 'users' => 'users#index'
+      get 'profile/:id' => 'users#show'
+      put 'profile/:id' => 'users#update'
+      patch 'profile/:id' => 'users#update'
       post 'register' => 'users#create'
 
       # sessions
