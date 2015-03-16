@@ -60,21 +60,27 @@
     <script src="bower_components/opentok-angular/opentok-angular.js"></script>
     <script src="bower_components/CodeMirror/lib/codemirror.js"></script>
     <script src="bower_components/opentok-editor/opentok-editor.js"></script>
+    <script src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
+    <script src="bower_components/auth0.js/build/auth0.js"></script>
+    <script src="bower_components/auth0-lock/build/auth0-lock.js"></script>
+    <script src="bower_components/auth0-angular/build/auth0-angular.js"></script>
+    <script src="bower_components/angular-storage/dist/angular-storage.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="app.js"></script>
-        <script src="common/main.js"></script>
-        <script src="register/register.module.js"></script>
-        <script src="register/register.controller.js"></script>
-        <script src="register/register.service.js"></script>
-        <script src="user/user.module.js"></script>
-        <script src="user/user.controller.js"></script>
-        <script src="user/user.service.js"></script>
-        <script src="auditorium/audit.module.js"></script>
-        <script src="auditorium/audit.controller.js"></script>
-        <script src="auditorium/audit.service.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/login.controller.js"></script>
+        <script src="scripts/controllers/register.controller.js"></script>
+        <script src="scripts/services/register.service.js"></script>
+        <script src="scripts/controllers/user.controller.js"></script>
+        <script src="scripts/services/user.service.js"></script>
+        <script src="scripts/controllers/audit.controller.js"></script>
+        <script src="scripts/services/audit.service.js"></script>
+        <script src="scripts/services/localStorage.js"></script>
 
 
         <!-- endbuild -->

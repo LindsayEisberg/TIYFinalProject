@@ -17,20 +17,44 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'user',
-    'register',
-    'auditorium'
+    'ngMessages'
+
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, authProvider, $httpProvider, $locationProvider, jwtInterceptorProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'common/views/main.html',
-        controller: 'MainCtrl as main'
+        templateUrl: 'views/main.html',
+        controller: 'AuthController as AuthCtrl'
       })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginController as loginCtrl'
+      })
+      .when('/register', {
+        templateUrl: 'views/register.html',
+        controller: 'AuthController as AuthCtrl'
+      })
+      .when('/auditorium/:roomId', {
+        templateUrl: 'views/auditorium.html',
+        controller: 'RoomController as roomCtrl'
+      })
+      .when('/browse', {
+        templateUrl: 'views/browse.html',
+        controller: 'RoomController as roomCtrl'
+      })
+      .when('/newEvent/:userId', {
+        templateUrl: 'views/createEvent.html',
+        controller: 'UserController as userCtrl'
+      })
+      .when('/profile/:userId', {
+         templateUrl: "views/profile.html",
+         controller: 'UserController as userCtrl'
+       })
       .when('/not-found', {
-         templateUrl: "common/views/404.html"
+         templateUrl: "views/404.html"
        })
        .otherwise({
          redirectTo: '/not-found'
        });
-   });
+
+     });

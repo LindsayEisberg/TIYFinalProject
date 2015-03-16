@@ -1,0 +1,22 @@
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="LoginController as loginCtrl">
+	<div class="modal-dialog" id="mainLog">
+		<div class="modal-content" id="loginContent">
+			<div class="loginHeader modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3 class="modal-title loginTitle">Login</h3>
+			</div>
+			<div class="modal-body loginBody">
+				<form class="loginForm" ng-submit="authCtrl.login()">
+					<div class="inputs"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><input type="email" ng-model="authCtrl.user.email" placeholder="Email" /></div>
+					<div class="inputs"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span><input type="password" ng-model="authCtrl.user.password" placeholder="Password" /></div>
+				</form>
+			</div>
+			<div class="modal-footer loginFooter">
+				<button type="submit" class="btn submitBtn">LOGIN</button>
+				<div class="mainNav">
+				<a href="#/register" data-toggle="modal" data-target="#registerModal" data-dismiss="modal">Don't have an account yet?</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

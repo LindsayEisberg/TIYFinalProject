@@ -18,8 +18,9 @@
 				<nav class="mainNav">
 						<a href="#/browse">BROWSE LIBRARY</a>
 						<span class="right">
-							<a href="#/" id="toggle-login" ng-click="main.toggleShow()" data-toggle="modal" data-target="#myModal">LOGIN</a>
-							<a href="#/" data-toggle="modal" data-target="#registerModal">REGISTER</a>
+							<a href="#/login" id="toggle-login" ng-click="main.toggleShow()" data-toggle="modal" data-target="#myModal">LOGIN</a>
+							<a href="#/register" data-toggle="modal" data-target="#registerModal">REGISTER</a>
+							
 						</span>
 				</nav>
 			</div>
@@ -27,7 +28,8 @@
     </div><!-- /.navbar-collapse -->
 </nav>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="AuthController as authCtrl">
+<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="LoginController as loginCtrl">
+	<alert class="alert" ng-repeat="error in errors" type="danger">{{error.error}}</alert>
 	<div class="modal-dialog" id="mainLog">
 		<div class="modal-content" id="loginContent">
 			<div class="loginHeader modal-header">
@@ -35,7 +37,7 @@
 				<h3 class="modal-title loginTitle">Login</h3>
 			</div>
 			<div class="modal-body loginBody">
-				<form class="loginForm" ng-submit="register.userLogin(login)">
+				<form class="loginForm" ng-submit="authCtrl.userLogin()">
 					<div class="inputs"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><input type="email" ng-model="authCtrl.userEmail" placeholder="Email" /></div>
 					<div class="inputs"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span><input type="password" ng-model="authCtrl.userPassword" placeholder="Password" /></div>
 				</form>
@@ -48,9 +50,9 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 
-<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true"  ng-controller="AuthController as authCtrl">
+<!-- <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true"  ng-controller="AuthController as authCtrl">
 	<div class="modal-dialog" id="registerLog">
 		<div class="modal-content" id="registerContent">
 			<div class="loginHeader modal-header">
@@ -75,7 +77,7 @@
 	</div>
 </div>
 
-
+ -->
 
     <h1 class="main-title">Auditorium</h1>
 </div>

@@ -34,6 +34,13 @@ module.exports = function(config) {
       'bower_components/opentok-angular/opentok-angular.js',
       'bower_components/CodeMirror/lib/codemirror.js',
       'bower_components/opentok-editor/opentok-editor.js',
+      'bower_components/angular-jwt/dist/angular-jwt.js',
+      'bower_components/auth0.js/build/auth0.js',
+      'bower_components/auth0-lock/build/auth0-lock.js',
+      'bower_components/auth0-angular/build/auth0-angular.js',
+      'bower_components/angular-storage/dist/angular-storage.js',
+      'bower_components/underscore/underscore.js',
+      'bower_components/angular-messages/angular-messages.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

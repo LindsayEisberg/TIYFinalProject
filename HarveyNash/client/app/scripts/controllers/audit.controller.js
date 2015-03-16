@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  angular.module('auditorium')
+  angular.module('app')
     .controller('RoomController', function(RoomService, $scope, $location) {
       var roomCtrl = this;
 

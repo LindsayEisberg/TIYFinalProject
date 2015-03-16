@@ -1,0 +1,25 @@
+
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true"  ng-controller="AuthController as authCtrl">
+	<div class="modal-dialog" id="registerLog">
+		<div class="modal-content" id="registerContent">
+			<div class="loginHeader modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3 class="modal-title loginTitle">Register</h3>
+			</div>
+			<div class="modal-body loginBody">
+				<form class="loginForm" ng-submit="authCtrl.register()">
+					<div class="inputs"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><input type="text" ng-model="authCtrl.user.name" placeholder="Name"></div>
+					<div class="inputs"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><input type="email" ng-model="authCtrl.user.email" placeholder="Email"></div>
+					<div class="inputs"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><input type="text" ng-model="authCtrl.user.username" placeholder="Username"></div>
+					<div class="inputs"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><input type="password" ng-model="authCtrl.user.password" placeholder="Password"></div>
+				</form>
+			</div>
+			<div class="modal-footer loginFooter">
+				<button type="submit" class="btn submitBtn">Complete Registration</button>
+				<div class="mainNav">
+				<a href="#/login" data-toggle="modal" data-target="#myModal" data-dismiss="modal">Already have an account?</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
