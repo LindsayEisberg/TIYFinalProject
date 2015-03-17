@@ -1,8 +1,14 @@
+class NotAuthenticatedError < StandardError
+end
+
+class AuthenticationTimeoutError < StandardError
+end
+
 # Auth Solution borrowed from:
 # http://adamalbrecht.com/2014/12/04/add-json-web-token-authentication-to-your-angular-rails-app/
 class ApplicationController < ActionController::API
   # TODO: this will need to be skipped on public calls
-  before_action :set_current_user, :authenticate_request
+  # before_action :set_current_user, :authenticate_request
 
   rescue_from NotAuthenticatedError do
     render json: { error: 'Not Authorized' }, status: :unauthorized
@@ -51,8 +57,3 @@ class ApplicationController < ActionController::API
   end
 end
 
-class NotAuthenticatedError < StandardError
-end
-
-class AuthenticationTimeoutError < StandardError
-end
