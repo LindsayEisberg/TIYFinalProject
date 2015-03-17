@@ -31,6 +31,7 @@
 
 
 
+
 // mainCtrl.superheros = SuperHerosService.getHeros();
 //
 //      mainCtrl.singleItem = SuperHerosService.getHero($routeParams.heroIndex);

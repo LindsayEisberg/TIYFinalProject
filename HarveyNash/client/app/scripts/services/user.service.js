@@ -3,7 +3,7 @@
 
   angular.module('app')
     .factory('UserService', function($scope, $rootScope, $http, LocalService) {
-      var url = "http://localhost:3000/profile"
+      var url = "http://localhost:3000/api/v1/profile"
 
       return {
         user: function() {

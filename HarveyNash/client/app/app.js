@@ -10,11 +10,11 @@
  */
 angular
   .module('app', [
+    'ngRoute',
     'opentok',
     'ngAnimate',
     'ngCookies',
     'ngResource',
-    'ngRoute',
     'ngSanitize',
     'ngTouch',
     'ngMessages'
@@ -33,6 +33,10 @@ angular
       .when('/register', {
         templateUrl: 'views/main.html',
         controller: 'AuthController as AuthCtrl'
+      })
+      .when('/auditorium/', {
+        templateUrl: 'views/auditorium.html',
+        controller: 'RoomController as roomCtrl'
       })
       .when('/auditorium/:roomId', {
         templateUrl: 'views/auditorium.html',
@@ -56,5 +60,4 @@ angular
        .otherwise({
          redirectTo: '/not-found'
        });
-
      });

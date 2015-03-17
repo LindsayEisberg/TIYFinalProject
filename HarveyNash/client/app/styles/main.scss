@@ -298,6 +298,30 @@ margin-right: -20px;
   border: 2px solid $dark;
 }
 
+
+//video controllers
+ot-publisher, ot-layout, ot-subscriber {
+  display: block;
+  overflow: hidden;
+}
+
+ot-layout {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+//profile page
+.profilePage {
+  h1 {
+    text-align: center;
+  }
+}
+
+
+
 /* Responsive: Portrait tablets and up */
 @media screen and (max-width: 1024px) {
   #large-header{

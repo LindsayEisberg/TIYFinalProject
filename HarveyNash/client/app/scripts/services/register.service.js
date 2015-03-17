@@ -15,13 +15,13 @@
       }
 
       return {
-        // authorize: function(access) {
-        //   if(access === AccessLevels.user) {
-        //     return this.isAuthenticated();
-        //   } else {
-        //     return true;
-        //   }
-        // },
+      //   authorize: function(access) {
+      //     if(access === AccessLevels.user) {
+      //       return this.isAuthenticated();
+      //     } else {
+      //       return true;
+      //     }
+      //   },
         isAuthenticated: function () {
           return LocalService.get('auth_token');
         },

@@ -1,0 +1,13 @@
+
+<div ng-controller="RoomController as roomCtrl">
+    <ot-layout props="{animate:true}">
+        <ot-subscriber ng-repeat="stream in streams"
+            stream="stream"
+            props="{style: {nameDisplayMode: 'off'}}">
+        </ot-subscriber>
+        <ot-publisher id="publisher"
+            apiKey="45176582"
+            props="{style: {nameDisplayMode: 'off'}, resolution: '1280x720', frameRate: 30}">
+        </ot-publisher>
+    </ot-layout>
+</div>

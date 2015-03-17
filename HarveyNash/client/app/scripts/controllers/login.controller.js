@@ -9,6 +9,7 @@
 
       loginCtrl.login = function () {
         if(loginCtrl.loginForm.$valid) {
+          loginCtrl.errors = [];
           AuthService.login(loginCtrl.user).success(function (result) {
             $location.path('/profile/:userId');
           }).error(function(err) {
