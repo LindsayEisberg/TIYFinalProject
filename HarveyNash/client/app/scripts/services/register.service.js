@@ -4,7 +4,7 @@
   angular.module('app')
     .factory('AuthService', function ($http, LocalService) {
       function checkTokenStatus(token)  {
-        $http.get('api/v1/auth/token_status?token=' + token);
+        $http.get('http://localhost:3000/api/v1/auth/token_status?token=' + token);
       }
 
       var token = LocalService.get('auth_token');
@@ -15,13 +15,13 @@
       }
 
       return {
-      //   authorize: function(access) {
-      //     if(access === AccessLevels.user) {
-      //       return this.isAuthenticated();
-      //     } else {
-      //       return true;
-      //     }
-      //   },
+        // authorize: function(access) {
+        //   if(access === AccessLevels.user) {
+        //     return this.isAuthenticated();
+        //   } else {
+        //     return true;
+        //   }
+        // },
         isAuthenticated: function () {
           return LocalService.get('auth_token');
         },

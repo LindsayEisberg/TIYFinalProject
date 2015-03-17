@@ -2,10 +2,4 @@
   <div  ng-controller="UserController as userCtrl">
 <h1>  Welcome {{userCtrl.singleUser.name}}</h1>
 </div>
-<div id="wrapper" ng-controller="RoomController as roomCtrl">
-  <form id="joinRoom" ng-submit="roomCtrl.joinRoom()">
-    <input type="text" name="room" value="" ng-model="room" placeholder="room name">
-    <input type="submit" name="joinRoom" value="join" id="joinRoomBtn">
-  </form>
-</div>
 </div>

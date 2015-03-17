@@ -2,18 +2,18 @@
   "use strict";
 
   angular.module('app')
-    .controller('UserController', function(UserService, $scope, $location, $routeParams) {
+    .controller('UserController', function(UserService, $scope, $location, $routeParams, $rootScope) {
       var userCtrl = this;
 
       UserService.getUsers().success(function (data) {
         userCtrl.users = data;
       });
 
-      UserService.getSingleUser($routeParams.userId).success(function(data) {
+      UserService.getSingleUser($routeParams.userid).success(function(data) {
         userCtrl.singleUser = data;
       });
 
-      userCtrl.currentIndex = $routeParams.userId;
+      userCtrl.currentIndex = $routeParams.userid;
 
       // userCtrl.singleItem = UserService.getUser($routeParams.userId);
       // userCtrl.go = function (index) {

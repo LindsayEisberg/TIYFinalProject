@@ -50,7 +50,7 @@ angular
         templateUrl: 'views/createEvent.html',
         controller: 'UserController as userCtrl'
       })
-      .when('/profile/:userId', {
+      .when('/profile/:userid', {
          templateUrl: "views/profile.html",
          controller: 'UserController as userCtrl'
        })
