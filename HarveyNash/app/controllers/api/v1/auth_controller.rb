@@ -6,7 +6,7 @@ module Api
       def authenticate
         user = User.find_by_credentials(params[:email], params[:password]) # you'll need to implement this
         if user
-          render json: { auth_token: user.generate_auth_token }, status: 200
+          render json: { id: user.id, auth_token: user.generate_auth_token }, status: 200
         else
           render json: { error: 'Invalid username or password' }, status: 401
         end
