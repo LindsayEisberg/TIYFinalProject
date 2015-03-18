@@ -7,7 +7,8 @@
 
       authCtrl.register = function () {
         AuthService.register(authCtrl.user).then(function (id) {
-          $location.path('/profile/' + id);
+          console.log("RegisterController#register: " + id.data.id )
+          $location.path('/profile/' + id.data.id);
         });
         console.log(authCtrl.user);
       };

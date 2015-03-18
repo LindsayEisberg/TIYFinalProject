@@ -6,7 +6,7 @@
 				<h3 class="modal-title loginTitle">Login</h3>
 			</div>
 			<div class="modal-body loginBody">
-				<form class="loginForm" ng-submit="authCtrl.login()">
+				<form class="loginForm" name="loginForm" ng-submit="authCtrl.login()">
 					<div class="inputs"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><input type="email" ng-model="authCtrl.user.email" placeholder="Email" /></div>
 					<div class="inputs"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span><input type="password" ng-model="authCtrl.user.password" placeholder="Password" /></div>
 				</form>
