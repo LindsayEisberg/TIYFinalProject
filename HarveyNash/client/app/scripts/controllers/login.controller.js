@@ -8,10 +8,10 @@
       $scope.errors = [];
 
       loginCtrl.login = function () {
-        if(loginCtrl.loginForm.$valid) {
+        if($scope.loginForm.$valid) {
           loginCtrl.errors = [];
           AuthService.login(loginCtrl.user).success(function (result) {
-            $location.path('/profile/:userId');
+            $location.path( '/profile/' + result.id );
           }).error(function(err) {
             $scope.errors.push(err);
           });
