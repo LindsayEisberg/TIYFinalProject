@@ -46,9 +46,8 @@ angular
         templateUrl: 'views/browse.html',
         controller: 'RoomController as roomCtrl'
       })
-      .when('/newEvent/:userId', {
-        templateUrl: 'views/createEvent.html',
-        controller: 'UserController as userCtrl'
+      .when('/createRoom', {
+        templateUrl: 'views/createEvent.html'
       })
       .when('/profile/:userid', {
          templateUrl: "views/profile.html",

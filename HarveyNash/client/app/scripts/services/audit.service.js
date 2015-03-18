@@ -2,9 +2,10 @@
   "use strict";
 
   angular.module('app')
-    .factory('RoomService', function($scope, $routeParams, $http, $q, baseURL, $window, room) {
+    .factory('RoomService', function($http, $q, $window) {
+      var baseURL = 'http://localhost:3000/api/v1/room'
       return {
-        getRoom: function() {
+        getRoom: function(baseURL, room) {
           var deferred = $q.defer();
           $http.get(baseURL + room).success(function(roomData) {
             deferred.resolve(roomData);

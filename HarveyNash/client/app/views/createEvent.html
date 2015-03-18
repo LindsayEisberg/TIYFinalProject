@@ -1,1 +1,18 @@
-<h1>Create Event</h1>
+<div class="container" ng-controller="UserCtrl">
+  <form class="joinRoom" ng-submit="joinRoom()">
+    <input type="text" name="room" value="" ng-model="room" id="room" placeholder="room name">
+    <input type="submit" name="joinRoom" value-"Join" id="joinRoomBtn">
+  </form>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+    function UserCtrl($scope, $window) {
+      $scope.room;
+      $scope.joinRoom = function () {
+        $window.location.href = $window.location.href + encodeURIComponent($scope.room);
+      }
+
+    };
+
+</script>

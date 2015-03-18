@@ -2,11 +2,82 @@
   "use strict";
 
   angular.module('app')
-    .controller('RoomController', function($scope, OTSession, apiKey, sessionId, token) {
+    .controller('RoomController', function(RoomService, $scope, OTSession, apiKey, sessionId, token) {
       var roomCtrl = this;
+      roomCtrl.notMine = function(stream) {
+        return stream.connection.connectionId != roomCtrl.session.connection.connectionId;
+      };
 
-      OTSession.init(apiKey, sessionId, token);
-      roomCtrl.streams = OTSession.streams;
+      RoomService.getRoom().then(function (roomData) {
+        if(roomCtrl.session) {
+          roomCtrl.session.disconnect();
+        }
+
+        roomCtrl.p2p = roomData.p2p;
+        roomCtrl.room = roomData.room;
+        // roomCtrl.ShareURL = baseURL === '/' ? $window.location.href : baseURL + roomData.room;
+        roomCtrl.streams = OTSession.streams;
+      OTSession.init(apiKey, sessionId, token, function(err, session) {
+        console.log('session init', apiKey, sessionId, token);
+        roomCtrl.session = session;
+        var connectDisconnect = function (connected) {
+          $scope.$apply(function () {
+            $scope.connected = connected;
+            if(!connected) $scope.publishing = false;
+          });
+        };
+        if ((session.is && session.is('connected')) || session.connected) connectDisconnect(true);
+        roomCtrl.session.on('sessionConnected', connectDisconnect.bind(roomCtrl.session, true));
+        roomCtrl.session.on('sessionDisconnected', connectDisconnect.bind(roomCtrl.session, false));
+      });
+      roomCtrl.publishing = true;
+    });
+
+
+
+
+      // OTSession.session.on('connectionCreated', function(event) {
+      //   console.log(event.connection.connectionId);
+      //   roomCtrl.count++;
+      // });
+
+
+      // RoomService.getRoom().then(function (roomData) {
+      //  if (roomCtrl.session) {
+      //    roomCtrl.session.disconnect();
+      //  }
+
+
+      // roomCtrl.notMine = function (stream) {
+      //   return stream.connection.connectionId != roomCtrl.session.connection.connectionId;
+      // };
+      //
+      // RoomService.getRoom().then(function (roomData) {
+      //   if (roomCtrl.session) {
+      //     roomCtrl.session.disconnect();
+      //   }
+      //   roomCtrl.p2p = roomData.room;
+      //   roomCtrl.shareURL = baseURL === '/' ? $window.location.href : baseURL + roomData.room;
+      //
+      //   OTSession.init(roomData.apiKey, roomData.sessionId, roomData.token, function (err, session) {
+      //     roomCtrl.session = session;
+      //
+      //     var connectDisconnect = function (connected) {
+      //       roomCtrl.$apply(function () {
+      //         roomCtrl.connected = connected;
+      //         if (!connected) $scope.publishing = false;
+      //       });
+      //     };
+      //
+      //     if ((session.is && session.is('connected')) || session.connected) connectDisconnect(true);
+      //       roomCtrl.session.on('sessionConnected', connectDisconnect.bind(roomCtrl.session, true));
+      //       roomCtrl.session.on('sessionDisconnected', connectDisconnect.bind(roomCtrl.session, false));
+      //   });
+      //
+      //   roomCtrl.publishing = true;
+      //
+      // });
+
 
     }).value({
       apiKey: '45176582',
