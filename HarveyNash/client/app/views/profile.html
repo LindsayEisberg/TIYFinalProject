@@ -1,5 +1,11 @@
 <div class="container profilePage">
   <div  ng-controller="UserController as userCtrl">
-<h1>  Welcome {{userCtrl.singleUser.name}}</h1>
+    <h1>Welcome {{ userCtrl.singleUser.username }}</h1>
+    <div class="foobar">
+      ID: {{ userCtrl.singleUser.id }} <br/>
+      Username: {{ userCtrl.singleUser.username }} <br/>
+      Email: {{ userCtrl.singleUser.email }} <br/>
+      Blurb: {{ userCtrl.singleUser.blurb }}
+    </div>
 </div>
 </div>

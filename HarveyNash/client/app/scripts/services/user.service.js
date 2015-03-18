@@ -2,18 +2,18 @@
   "use strict";
 
   angular.module('app')
-    .factory('UserService', function($scope, $rootScope, $http, LocalService) {
+    .factory('UserService', function($http, LocalService) {
       var url = "http://localhost:3000/api/v1/profile"
 
-      return {
-        user: function() {
-          if(LocalService.get('auth_token')) {
-            return angular.fromJson(LocalService.get('auth_token')).user;
-          } else {
-            return {};
-          }
-        }
-      };
+      /* return {
+         user: function() {
+         if(LocalService.get('auth_token')) {
+         return angular.fromJson(LocalService.get('auth_token')).user;
+         } else {
+         return {};
+         }
+         }
+         }; */
 
       var getUsers = function () {
         return $http.get(url);
