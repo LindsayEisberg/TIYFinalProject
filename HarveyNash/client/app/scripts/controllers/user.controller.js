@@ -11,19 +11,40 @@
 
       UserService.getSingleUser($routeParams.userid).success(function(data) {
         userCtrl.singleUser = data;
+        console.log(data.id);
+
       });
 
       userCtrl.currentIndex = $routeParams.userid;
 
-      // userCtrl.singleItem = UserService.getUser($routeParams.userId);
-      // userCtrl.go = function (index) {
-      //   $location.path('profile' + index);
-      // }
+      userCtrl.newSessionForm = false;
+
+      userCtrl.toggleShow = function () {
+      userCtrl.newSessionForm = !userCtrl.newSessionForm;
+
+};
+
+
+      UserService.getEvents().success(function (data) {
+        userCtrl.events = data;
+      });
+
+      userCtrl.addNewEvent = function (newEvent) {
+        UserService.addEvent(newEvent);
+        userCtrl.newSessionForm = false;
+        userCtrl.events = UserService.getEvents();
+
+
+};
+
+  // userCtrl.routeBack = function () {
+  //     UserService.getSingleUser($routeParams.userid).success(function(data) {
+  //       userCtrl.singleUser = data;
+  //       $location.path('/profile/' + data.id);
+  //     });
+  // };
 
       console.log('single profile index is: ', userCtrl.singleItem);
-
-
-
 
 
     });

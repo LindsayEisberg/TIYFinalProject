@@ -4,9 +4,59 @@
   angular.module('app')
     .controller('RoomController', function(RoomService, $scope, OTSession, apiKey, sessionId, token) {
       var roomCtrl = this;
+      roomCtrl.publishing=false;
+      roomCtrl.screenBig = true;
+      roomCtrl.connected = false;
+
+      roomCtrl.screenPublisherProps = {
+        name: "screen",
+        style: {nameDisplayMode:"off"},
+        publishAudio: false,
+        constraints: {
+          video: {
+            mandatory: {
+              maxWidth: 1920,
+              maxHeight: 1080
+            },
+            optional: []
+          },
+          audio: false
+        },
+        mirror: false,
+        width: screen.width,
+        height: screen.height,
+        aspectRatio: screen.width  / screen.height
+      };
+
+      var facePublisherProps = {
+        name: 'face',
+        width: '100%',
+        height: '100%',
+        style: {
+          nameDisplayMode: 'off'
+        }
+      };
+
+      roomCtrl.facePublisherProps = facePublisherProps;
+
+
+
+
       roomCtrl.notMine = function(stream) {
         return stream.connection.connectionId != roomCtrl.session.connection.connectionId;
       };
+
+
+      $scope.$on('changeSize', function (event) {
+        if(event.targetScope.stream.oth_large === undefined) {
+          event.targetScope.stream.oth_large = event.targetScope.stream.name !== "screen";
+        } else {
+          event.targetScope.stream.oth_large = !event.targetScope.stream.oth_large;
+        }
+        setTimeout(function () {
+          event.targetScope.$emit('otLayout');
+        }, 10);
+      });
 
       RoomService.getRoom().then(function (roomData) {
         if(roomCtrl.session) {
@@ -16,7 +66,7 @@
         roomCtrl.p2p = roomData.p2p;
         roomCtrl.room = roomData.room;
         // roomCtrl.ShareURL = baseURL === '/' ? $window.location.href : baseURL + roomData.room;
-        roomCtrl.streams = OTSession.streams;
+
       OTSession.init(apiKey, sessionId, token, function(err, session) {
         console.log('session init', apiKey, sessionId, token);
         roomCtrl.session = session;
@@ -32,7 +82,7 @@
       });
       roomCtrl.publishing = true;
     });
-
+    roomCtrl.streams = OTSession.streams;
 
 
 

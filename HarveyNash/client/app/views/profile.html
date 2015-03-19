@@ -1,11 +1,44 @@
 <div class="container profilePage">
   <div  ng-controller="UserController as userCtrl">
     <h1>Welcome {{ userCtrl.singleUser.username }}</h1>
-    <div class="foobar">
-      ID: {{ userCtrl.singleUser.id }} <br/>
-      Username: {{ userCtrl.singleUser.username }} <br/>
-      Email: {{ userCtrl.singleUser.email }} <br/>
-      Blurb: {{ userCtrl.singleUser.blurb }}
+      <div class="row">
+        <div class="col-md-6">
+          <h3>Account Information</h3>
+          <!-- ID: {{ userCtrl.singleUser.id }} <br/> -->
+          <p>Username: {{ userCtrl.singleUser.username }}</p>
+          <p>Email: {{ userCtrl.singleUser.email }}</p>
+          <p>Blurb: {{ userCtrl.singleUser.blurb }}</p>
+
+
+          <h3>Event Listings</h3>
+          <div class="eventList" ng-repeat="event in userCtrl.events">
+            <h4>{{event.name}}</h4>
+            <p>{{event.description}}</p>
+            <p>{{event.date | date: 'shortTime'}}</p>
+          </div>
+          <button id="toggleNew" ng-click="userCtrl.toggleShow()">Create New Event</button>
+        </div>
+
+
+
+<!--     <a href="#/profile/{{userCtrl.singleUser.id}}/createRoom">Create New Event</a>
+ -->
+
+        <div class="col-md-6">
+          <div class="newRoom" ng-show="userCtrl.newSessionForm">
+            <h2>Schedule a Video Conference</h2>
+            <form ng-submit="userCtrl.addNewEvent(newEvent)" class="newEventForm">
+              <label for="newEventName">Session Name</label>
+              <input type="text" ng-model="newEvent.name" placeholder="Event Name">
+              <label for="newEventDescription">Please provide a short description of the Video Session</label>
+              <textarea ng-model="newEvent.description" name="newEventDescription" id="newEventDescription" rows="10" placeholder="Description of Session"></textarea>
+              <label for="newEventDateTime">Please select the date and time for the session</label>
+              <datetimepicker min-date="minDate" show-weeks="showWeeks" hour-step="1" minute-step="15" ng-model="newEvent.date" show-meridian="true" date-format="dd-MMM-yyyy" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" readonly-time="false"></datetimepicker>
+              {{userCtrl.date | date: 'shortTime'}}
+              <button type="submit">Add New Event</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
 </div>

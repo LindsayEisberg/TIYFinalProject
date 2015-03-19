@@ -17,7 +17,9 @@ angular
     'ngResource',
     'ngSanitize',
     'ngTouch',
-    'ngMessages'
+    'ngMessages',
+    'ui.bootstrap',
+    'ui.bootstrap.datetimepicker'
 
   ])
   .config(function ($routeProvider) {
@@ -46,8 +48,9 @@ angular
         templateUrl: 'views/browse.html',
         controller: 'RoomController as roomCtrl'
       })
-      .when('/createRoom', {
-        templateUrl: 'views/createEvent.html'
+      .when('/profile/:id/createRoom', {
+        templateUrl: 'views/createEvent.html',
+        controller: 'UserController as userCtrl'
       })
       .when('/profile/:userid', {
          templateUrl: "views/profile.html",

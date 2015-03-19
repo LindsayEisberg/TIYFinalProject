@@ -59,6 +59,17 @@ a {
   color: $lightest;
 }
 
+h1 {
+  font-family: $avenir;
+  border-top: 2px solid $accent;
+  border-bottom: 2px solid $accent;
+  padding: 5px;
+  color: $accent;
+  text-transform: uppercase;
+  font-weight: 900;
+  margin: 20px 0 20px 0;
+}
+
 //main page
 #large-header {
     background: -webkit-linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(../images/group1.jpg);
@@ -320,6 +331,20 @@ ot-layout {
   }
 }
 
+.newRoom {
+    -webkit-animation: fadeInDown 0.7s;
+    -moz-animation: fadeInDown 0.7s;
+    -ms-animation: fadeInDown 0.7s;
+    animation: fadeInDown 0.7s;
+    background: $lightest;
+}
+
+.newRoom.ng-hide {
+    -webkit-animation: fadeOutUp 0.7s;
+    -moz-animation: fadeOutUp 0.7s;
+    -ms-animation: fadeOutUp 0.7s;
+    animation: fadeOutUp 0.7s;
+}
 
 
 /* Responsive: Portrait tablets and up */

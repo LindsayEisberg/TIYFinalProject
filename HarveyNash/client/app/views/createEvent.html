@@ -1,18 +1,17 @@
-<div class="container" ng-controller="UserCtrl">
-  <form class="joinRoom" ng-submit="joinRoom()">
-    <input type="text" name="room" value="" ng-model="room" id="room" placeholder="room name">
-    <input type="submit" name="joinRoom" value-"Join" id="joinRoomBtn">
+<div ng-controller="UserController as userCtrl">
+
+<div class="newRoom">
+  <h2>Schedule a Video Conference</h2>
+  <form ng-submit="userCtrl.addNewEvent(newEvent)" class="newEventForm">
+    <label for="newEventName">Session Name</label>
+    <input type="text" ng-model="newEvent.name" placeholder="Event Name">
+    <label for="newEventDescription">Please provide a short description of the Video Session</label>
+    <textarea ng-model="newEvent.description" name="newEventDescription" id="newEventDescription" rows="10" placeholder="Description of Session"></textarea>
+    <label for="newEventDateTime">Please select the date and time for the session</label>
+    <datetimepicker min-date="minDate" show-weeks="showWeeks" hour-step="1" minute-step="15" ng-model="userCtrl.date" show-meridian="true" date-format="dd-MMM-yyyy" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" readonly-time="false"></datetimepicker>
+    {{userCtrl.date | date: 'shortTime'}}
+    <button type="submit">Add New Event</button>
   </form>
+  <a href="#/profile/{{userCtrl.$index}}">Test</a>
 </div>
-
-<script type="text/javascript" charset="utf-8">
-
-    function UserCtrl($scope, $window) {
-      $scope.room;
-      $scope.joinRoom = function () {
-        $window.location.href = $window.location.href + encodeURIComponent($scope.room);
-      }
-
-    };
-
-</script>
+</div>

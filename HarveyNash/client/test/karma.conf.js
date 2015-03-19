@@ -36,6 +36,7 @@ module.exports = function(config) {
       'bower_components/opentok-editor/opentok-editor.js',
       'bower_components/underscore/underscore.js',
       'bower_components/angular-messages/angular-messages.js',
+      'bower_components/angular-ui-bootstrap-datetimepicker/datetimepicker.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
