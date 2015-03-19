@@ -48,13 +48,9 @@ angular
         templateUrl: 'views/browse.html',
         controller: 'RoomController as roomCtrl'
       })
-      .when('/profile/:id/createRoom', {
-        templateUrl: 'views/createEvent.html',
-        controller: 'UserController as userCtrl'
-      })
       .when('/profile/:userid', {
          templateUrl: "views/profile.html",
-         controller: 'UserController as userCtrl'
+         controller: "EventController as eventCtrl"
        })
       .when('/not-found', {
          templateUrl: "views/404.html"

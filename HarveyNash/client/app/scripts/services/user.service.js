@@ -22,25 +22,16 @@
         return $http.get(url + '/' + id);
       };
 
-      var getEvents = function (events) {
-        return $http.get(url + '/' + events);
-      };
 
-
-      var addNewEvent = function (event) {
-  // boots.push(boot);
-      $http.post(url, event);
-      $rootScope.$broadcast('event:created');
-    };
 
 
       return {
         getUsers: getUsers,
         getSingleUser: getSingleUser,
-        getEvents: getEvents,
-        addEvent: addNewEvent
+
 
       }
     });
+      
 
 })();

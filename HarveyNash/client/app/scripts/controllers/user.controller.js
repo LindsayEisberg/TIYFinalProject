@@ -17,25 +17,8 @@
 
       userCtrl.currentIndex = $routeParams.userid;
 
-      userCtrl.newSessionForm = false;
-
-      userCtrl.toggleShow = function () {
-      userCtrl.newSessionForm = !userCtrl.newSessionForm;
-
-};
 
 
-      UserService.getEvents().success(function (data) {
-        userCtrl.events = data;
-      });
-
-      userCtrl.addNewEvent = function (newEvent) {
-        UserService.addEvent(newEvent);
-        userCtrl.newSessionForm = false;
-        userCtrl.events = UserService.getEvents();
-
-
-};
 
   // userCtrl.routeBack = function () {
   //     UserService.getSingleUser($routeParams.userid).success(function(data) {
