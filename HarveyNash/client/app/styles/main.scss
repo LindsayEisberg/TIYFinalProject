@@ -82,6 +82,21 @@ body {
  background-color: $lightest;
 }
 
+h3 {
+  font-family: $avenir;
+  font-size: 2em;
+  text-align: center;
+
+}
+h4 {
+  font-family: $minion;
+  font-size: 1.5em;
+}
+ p {
+   font-family: $minion;
+   font-size: 1.2em;
+ }
+
 //main page
 #large-header {
     background: -webkit-linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(../images/group1.jpg);
@@ -360,7 +375,7 @@ ot-layout {
   cursor: pointer;
   &:hover {
     color:$accent2;
-    @include transition(all .5s ease);
+    @include transition(all .5s);
   }
 }
 .sidebar {
@@ -406,6 +421,15 @@ ot-layout {
   width: 48%;
   margin: 0 7px 0 7px;
   padding: 0 10px 30px 20px;
+}
+
+//event listing info
+.eventTime {
+  float: right;
+}
+
+.eventDescrip {
+
 }
 
 /* Responsive: Portrait tablets and up */
