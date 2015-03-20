@@ -2,86 +2,88 @@
   "use strict";
 
   angular.module('app')
-    .controller('RoomController', function(RoomService, $scope, OTSession, apiKey, sessionId, token) {
-      var roomCtrl = this;
-      roomCtrl.notMine = function(stream) {
-        return stream.connection.connectionId != roomCtrl.session.connection.connectionId;
-      };
+    .controller('RoomController', function($scope,RoomService,OTSession,$routeParams) {
+      var RoomCtrl = this;
+      var roomId = $routeParams.roomId;
+      var userId = $routeParams.userId;
+      // initialize scope values like opentok-meet
+      // $scope.streams = OTSession.streams;
+      // $scope.publishing = true;
+      // $scope.screenBig = true;
+      // $scope.connected = false;
+      // $scope.leaving = false;
 
-      RoomService.getRoom().then(function (roomData) {
-        if(roomCtrl.session) {
-          roomCtrl.session.disconnect();
-        }
-
-        roomCtrl.p2p = roomData.p2p;
-        roomCtrl.room = roomData.room;
-        // roomCtrl.ShareURL = baseURL === '/' ? $window.location.href : baseURL + roomData.room;
-        roomCtrl.streams = OTSession.streams;
-      OTSession.init(apiKey, sessionId, token, function(err, session) {
-        console.log('session init', apiKey, sessionId, token);
-        roomCtrl.session = session;
-        var connectDisconnect = function (connected) {
-          $scope.$apply(function () {
-            $scope.connected = connected;
-            if(!connected) $scope.publishing = false;
-          });
-        };
-        if ((session.is && session.is('connected')) || session.connected) connectDisconnect(true);
-        roomCtrl.session.on('sessionConnected', connectDisconnect.bind(roomCtrl.session, true));
-        roomCtrl.session.on('sessionDisconnected', connectDisconnect.bind(roomCtrl.session, false));
-      });
-      roomCtrl.publishing = true;
-    });
-
-
-
-
-      // OTSession.session.on('connectionCreated', function(event) {
-      //   console.log(event.connection.connectionId);
-      //   roomCtrl.count++;
-      // });
-
-
-      // RoomService.getRoom().then(function (roomData) {
-      //  if (roomCtrl.session) {
-      //    roomCtrl.session.disconnect();
-      //  }
-
-
-      // roomCtrl.notMine = function (stream) {
-      //   return stream.connection.connectionId != roomCtrl.session.connection.connectionId;
+      // $scope.screenPublisherProps = {
+      //   name: 'screen',
+      //   style: {
+      //     nameDisplayMode: 'off'
+      //   },
+      //   publishAudio: false,
+      //   videoSource: 'screen'
       // };
-      //
-      // RoomService.getRoom().then(function (roomData) {
-      //   if (roomCtrl.session) {
-      //     roomCtrl.session.disconnect();
-      //   }
-      //   roomCtrl.p2p = roomData.room;
-      //   roomCtrl.shareURL = baseURL === '/' ? $window.location.href : baseURL + roomData.room;
-      //
-      //   OTSession.init(roomData.apiKey, roomData.sessionId, roomData.token, function (err, session) {
-      //     roomCtrl.session = session;
-      //
-      //     var connectDisconnect = function (connected) {
-      //       roomCtrl.$apply(function () {
-      //         roomCtrl.connected = connected;
-      //         if (!connected) $scope.publishing = false;
-      //       });
+      // var facePublisherPropsHD = {
+      //   name: 'face',
+      //   width: '100%',
+      //   height: '100%',
+      //   style: {
+      //     nameDisplayMode: 'off'
+      //   },
+      //   resolution: '1280x720',
+      //   frameRate: 30
+      // },
+      //     facePublisherPropsSD = {
+      //       name: 'face',
+      //       width: '100%',
+      //       height: '100%',
+      //       style: {
+      //         nameDisplayMode: 'off'
+      //       }
       //     };
-      //
-      //     if ((session.is && session.is('connected')) || session.connected) connectDisconnect(true);
-      //       roomCtrl.session.on('sessionConnected', connectDisconnect.bind(roomCtrl.session, true));
-      //       roomCtrl.session.on('sessionDisconnected', connectDisconnect.bind(roomCtrl.session, false));
-      //   });
-      //
-      //   roomCtrl.publishing = true;
-      //
-      // });
+      // $scope.facePublisherProps = facePublisherPropsHD;
 
+      // $scope.notMine = function(stream) {
+      //   return stream.connection.connectionId !== $scope.session.connection.connectionId;
+      // };
 
-    }).value({
-      apiKey: '45176582',
-      sessionId: '2_MX40NTE3NjU4Mn5-MTQyNjYxMTk5NTAwNX5yRUJpUCtZOFJqQjNGL0pKbVlMNUpJM3l-fg',
-      token: 'T1==cGFydG5lcl9pZD00NTE3NjU4MiZzaWc9YWQ0NzQxZjVjNmM5Zjc3ZWUxMzAwMjgxYjFkNjY4Mjk5YjIzNmU5Mzpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5URTNOalU0TW41LU1UUXlOall4TVRrNU5UQXdOWDV5UlVKcFVDdFpPRkpxUWpOR0wwcEtiVmxNTlVwSk0zbC1mZyZjcmVhdGVfdGltZT0xNDI2NjEyMDAxJm5vbmNlPTAuNTcyOTcwODAyODY2MzQxJmV4cGlyZV90aW1lPTE0MjkyMDM5Njg='
-      });
+      RoomService.getRoomData(roomId)
+        .success(function(roomData) {
+          console.log(roomData);
+          $scope.name = roomData.session.name;
+          $scope.desc = roomData.session.description;
+          $scope.active = roomData.session.active;
+          $scope.moderators = roomData.session.moderators;
+          $scope.subscribers = roomData.session.subscribers;
+        });
+
+      // get the room credentials which includes:
+      // - OTApiKey
+      // - OTSessionId
+      // - OTToken
+      RoomService.getCredentials(roomId, userId)
+        .success(function(credData) {
+          console.log(credData);
+          // upon success, initialize the session using our new
+          // credentials
+          if ($scope.session) {
+            $scope.session.disconnect();
+          }
+          OTSession.init(credData.OTApiKey, credData.OTSessionId, credData.OTToken, function(err, session) {
+            $scope.session = session;
+            var connectDisconnect = function(connected) {
+              $scope.$apply(function() {
+                $scope.connected = connected;
+                if (!connected) {
+                  $scope.publishing = false;
+                }
+              });
+            };
+            if ((session.is && session.is('connected')) || session.connected) {
+              connectDisconnect(true);
+            }
+            $scope.session.on('sessionConnected', connectDisconnect.bind($scope.session, true));
+            $scope.session.on('sessionDisconnected', connectDisconnect.bind($scope.session, false));
+          });
+          $scope.streams = OTSession.streams;
+        });
+    });
 })();

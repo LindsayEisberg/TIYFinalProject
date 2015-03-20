@@ -73,7 +73,10 @@ Rails.application.routes.draw do
       # sessions
       get 'sessions/active' => 'sessions#active_sessions'
       get 'sessions/open' => 'sessions#open'
+      get 'sessions/:id' => 'sessions#show'
       get 'sessions/:id/close' => 'sessions#close'
+      get 'sessions/:id/credentials' => 'sessions#credentials'
+      get 'sessions/:id/token' => 'sessions#token'
 
     end
   end
