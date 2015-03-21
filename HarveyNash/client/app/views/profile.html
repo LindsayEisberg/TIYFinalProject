@@ -32,6 +32,32 @@
                   <textarea ng-model="newEvent.description" name="newEventDescription" id="newEventDescription" rows="10" placeholder="Description of Session"></textarea>
                   <p>Select Date and Time</p>
                   <datetimepicker min-date="minDate" show-weeks="showWeeks" hour-step="1" minute-step="15" ng-model="newEvent.date" show-meridian="true" date-format="dd-MMM-yyyy" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" readonly-time="false"></datetimepicker>
+                  <label for="guests">Will unregistered guests be allowed into your event?</label>
+                  <select class="form-control" id-"guests">
+                    <option>YES</option>
+                    <option>NO</option>
+                  </select>
+
+                  <label for="moderators">How many moderators will be in the event?</label>
+                  <select class="form-control" id-"moderators">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>More than 5</option>
+                  </select>
+
+                  <label for="topic">What is the topic of your event?</label>
+                  <select class="form-control" id-"topic">
+                    <option>topic 1</option>
+                    <option>topic 2</option>
+                    <option>topic 3</option>
+                    <option>topic 4</option>
+                    <option>topic 5</option>
+                    <option>topic 6</option>
+                  </select>
+
                   <button type="submit">Add New Event</button>
                 </div>
               </form>

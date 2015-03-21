@@ -3,13 +3,25 @@
 <div class="newRoom">
   <h2>Schedule a Video Conference</h2>
   <form ng-submit="eventCtrl.addNewEvent(newEvent)" class="newEventForm">
+
     <label for="newEventName">Session Name</label>
     <input type="text" ng-model="newEvent.name" placeholder="Event Name">
+
     <label for="newEventDescription">Please provide a short description of the Video Session</label>
     <textarea ng-model="newEvent.description" name="newEventDescription" id="newEventDescription" rows="10" placeholder="Description of Session"></textarea>
+
     <label for="newEventDateTime">Please select the date and time for the session</label>
     <datetimepicker min-date="minDate" show-weeks="showWeeks" hour-step="1" minute-step="15" ng-model="eventCtrl.date" show-meridian="true" date-format="dd-MMM-yyyy" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" readonly-time="false"></datetimepicker>
+
     {{eventCtrl.date | date: 'short'}}
+
+    <label for="guests">Will unregistered guests be allowed into your event?</label>
+    <select class="form-control" id-"guests">
+      <option>YES</option>
+      <option>NO</option>
+    </select>
+
+    <label for="moderators" data-toggle="tooltip" title="Some tooltip text!">How many moderators will be in the event?</label>
     <button type="submit">Add New Event</button>
   </form>
   <a href="#/profile/{{userCtrl.$index}}">Test</a>
