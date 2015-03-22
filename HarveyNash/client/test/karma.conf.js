@@ -32,8 +32,6 @@ module.exports = function(config) {
       'bower_components/angular-ui-utils/ui-utils.js',
       'bower_components/underscore/underscore.js',
       'bower_components/angular-messages/angular-messages.js',
-      'bower_components/opentok-layout-js/opentok-layout.js',
-      'bower_components/opentok-angular/opentok-angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
