@@ -61,7 +61,7 @@
           return config;
         },
         responseError: function(response) {
-          if(response.status === 401 || response.status === 403) {
+          if(response.status === 401 || response.status === 403 || response.status === 406) {
             LocalService.unset('auth_token');
             $injector.get('$location').path('/login');
           }

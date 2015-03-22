@@ -41,9 +41,9 @@
 				<h3 class="modal-title loginTitle">Login</h3>
 			</div>
 			<div class="modal-body loginBody">
-				<form class="loginForm" name=loginForm novalidate>
+				<form class="loginForm" name="loginForm" novalidate>
 					<div class="inputs"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><input type="email" ng-model="loginCtrl.user.email" placeholder="Email" /></div>
-					<div class="inputs"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span><input type="password" ng-model="loginCtrl.user.password" placeholder="Password" /></div>
+					<div class="inputs"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span><input type="password" class="password" ng-model="loginCtrl.user.password" placeholder="Password" /></div>
 				</form>
 			</div>
 			<div class="modal-footer loginFooter">
@@ -66,23 +66,36 @@
 				<h3 class="modal-title loginTitle">Register</h3>
 			</div>
 			<div class="modal-body loginBody">
-				<form class="loginForm">
-					<div class="inputs"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><input type="text" ng-model="authCtrl.user.name" placeholder="Name"></div>
-					<div class="inputs"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><input type="email" ng-model="authCtrl.user.email" placeholder="Email"></div>
-					<div class="inputs"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><input type="text" ng-model="authCtrl.user.username" placeholder="Username"></div>
-					<div class="inputs"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><input type="password" ng-model="authCtrl.user.password" placeholder="Password"></div>
-				</form>
+				<form class="loginForm" name="userForm" novalidate>
+          <!-- NAME -->
+					<div class="inputs" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><input type="text" ng-model="authCtrl.user.name" placeholder="Name" name-"name" class="textInput" required>
+          <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">Your name is required.</p></div>
+
+          <!-- EMAIL -->
+					<div class="inputs" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><input type="email" name="email" ng-model="authCtrl.user.email" placeholder="Email" required>
+          <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email</p></div>
+
+          <!-- USERNAME -->
+					<div class="inputs" ng-class=" { 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><input type="text" name="username" class="textInput" ng-model="authCtrl.user.username" placeholder="Username" ng-minlength="3" required>
+          <p ng-show="userForm.username.$error.minlength" class="help-block">Username is short</p>
+          </div>
+
+          <!-- PASSWORD -->
+					<div class="inputs"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><input type="password" ng-model="authCtrl.user.password" placeholder="Password" class="password" required></div>
+
 			</div>
 			<div class="modal-footer loginFooter">
-				<button type="submit" ng-click="authCtrl.register()" class="btn submitBtn">Complete Registration</button>
+				<button type="submit" ng-disabled="userForm.$invalid" ng-click="authCtrl.register(userForm.$valid)" class="btn submitBtn">Complete Registration</button>
 				<div class="mainNav">
 				<a href="#/login" data-toggle="modal" data-target="#myModal" data-dismiss="modal">Already have an account?</a>
 				</div>
 			</div>
+    </form>
 		</div>
 	</div>
 </div>
-
+<!-- <alert ng-if="!submit">{{authCtrl.register.error}}</alert>
+ -->
 <!-- BODY -->
 
     <h1 class="main-title">Auditorium</h1>

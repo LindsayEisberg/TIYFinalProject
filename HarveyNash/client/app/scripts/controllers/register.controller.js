@@ -6,11 +6,19 @@
       var authCtrl = this;
 
       authCtrl.register = function () {
-        AuthService.register(authCtrl.user).then(function (id) {
-          console.log("RegisterController#register: " + id.data.id )
-          $location.path('/profile/' + id.data.id);
-        });
-        console.log(authCtrl.user);
+        if($scope.userForm.$valid) {
+          authCtrl.errors = [];
+          AuthService.register(authCtrl.user).success(function (id) {
+            console.log("RegisterController#register: " + id.data.id )
+            $location.path('/profile/' + id.data.id);
+          }).error(function(err) {
+            // $scope.errors.push(err)
+             _.each(err.errors, function(value, key) {
+                console.log(key + " " + value);
+              });
+
+          });
+        }
       };
 
 

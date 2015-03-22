@@ -223,14 +223,12 @@ a {
   }
 
 #loginContent {
-  height: 425px;
   width: 400px;
   background: rgba(210, 212, 213, 0.8);
 
 }
 
 #registerContent {
-  height: 525px;
   width: 400px;
   background: rgba(210, 212, 213, 0.8);
 }
@@ -275,7 +273,7 @@ a {
       border-radius: 0px 0px 0px 3px;
       background-color: $lightest;
     }
-    input[type="password"] {
+    .password {
       border: 1px solid #dcdcdc;
       padding: 12px 10px;
       width: 82%;
@@ -283,7 +281,7 @@ a {
       background-color: $lightest;
 
     }
-    input[type="text"] {
+    .textInput {
       border: 1px solid #dcdcdc;
       padding: 12px 10px;
       width: 82%;

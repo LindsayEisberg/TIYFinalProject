@@ -16,6 +16,7 @@
             console.log(result.id);
           }).error(function(err) {
             $scope.errors.push(err);
+            console.log(err);
           });
         }
       };
