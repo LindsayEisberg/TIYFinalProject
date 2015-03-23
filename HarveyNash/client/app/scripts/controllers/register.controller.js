@@ -16,7 +16,6 @@
              _.each(err.errors, function(value, key) {
                 console.log(key + " " + value);
               });
-
           });
         }
       };

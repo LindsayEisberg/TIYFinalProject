@@ -194,7 +194,7 @@ a {
 
 
 //Login Form
-#registerModal {
+#registerModal, #myModal {
   z-index: 9999;
   background: rgba(0,0,0,0.5);
 }
@@ -204,7 +204,6 @@ a {
   position: fixed;
   top: 50%;
   @include transform(translate(-33%, -60%));
-  z-index: 9999;
   }
 
   #registerLog {
