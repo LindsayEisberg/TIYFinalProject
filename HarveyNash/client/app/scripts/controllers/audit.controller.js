@@ -89,6 +89,16 @@
           });
       };
 
+      // remove a user from the center stage
+      $scope.centerStageRemove = function(centerStageUserId) {
+        RoomService.centerStageRemove($scope.roomId, centerStageUserId)
+          .success(function(ids) {
+            var idx = $scope.stageMembers.indexOf(centerStageUserId);
+            $scope.stageMembers.splice(idx);
+            $scope.session.signal({type:"stageChange"});
+          });
+      };
+
       // return true if the given user_id is currently on the center
       // stage
       $scope.isCenterStage = function() {
