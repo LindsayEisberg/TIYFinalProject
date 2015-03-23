@@ -4,11 +4,10 @@
       <ot-layout props="{animate:true,bigFixedRatio:true}">
         <ot-subscriber ng-repeat="stream in streams" stream="stream" props="{style: {nameDisplayMode: 'on'}}">
         </ot-subscriber>
-        <ot-publisher id="publisher" apiKey="45178972"></ot-publisher>
+        <ot-publisher id="publisher" ng-if="isCenterStage()"></ot-publisher>
       </ot-layout>
     </div>
     <div class="col-md-4">
-      <h1>{{ roomCtrl.foo }}</h1>
       <div class="user-list moderators">
         <h3>Moderators</h3>
         <ul ng-repeat="user in moderators">
@@ -31,7 +30,7 @@
   </div>
 </div>
 
-<!-- 
+<!--
 <div ng-class="{'mouse-move': mouseMove}">
   <div id="session" ng-class="{'session-connected': connected}">
     <ot-layout props="{animate:true,bigFixedRatio:true}">

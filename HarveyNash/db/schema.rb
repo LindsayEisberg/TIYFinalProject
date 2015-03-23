@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150319182342) do
+ActiveRecord::Schema.define(version: 20150323141531) do
 
-  create_table "session_users", id: false, force: :cascade do |t|
-    t.integer  "session_id", null: false
-    t.integer  "user_id",    null: false
-    t.string   "role",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "session_users", force: :cascade do |t|
+    t.integer  "session_id",                   null: false
+    t.integer  "user_id",                      null: false
+    t.string   "role",                         null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "center_stage", default: false
   end
 
   create_table "sessions", force: :cascade do |t|

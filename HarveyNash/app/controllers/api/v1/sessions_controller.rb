@@ -19,6 +19,41 @@ module Api
         render json: @session
       end
 
+      # center stage users
+      def center_stage
+        center_stage_ids = SessionUser.where("session_id = ? and center_stage = ?",
+                                             params[:id], true).map(&:user_id)
+        render json: center_stage_ids
+      end
+
+      # add to center stage
+      def center_stage_add
+        user_id = params[:user_id]
+        session_id = params[:id]
+        session_user_record = SessionUser.where("session_id = ? and user_id = ?",
+                                                session_id, user_id)[0]
+        if session_user_record.update(center_stage: true)
+          render json: {message: "#{user_id} added to center stage of session #{session_id}"},
+            status: 200
+        else
+          render json: {errors: session_user_record.errors.to_json }, status: 500
+        end
+      end
+
+      # remove from center stage
+      def center_stage_remove
+        user_id = params[:user_id]
+        session_id = params[:id]
+        session_user_record = SessionUser.where("session_id = ? and user_id = ?",
+                                                session_id, user_id)[0]
+        if session_user_record.update(center_stage: false)
+          render json: {message: "#{user_id} removed from center stage of session #{session_id}"},
+            status: 200
+        else
+          render json: { errors: session_user_record.errors.to_json }, status: 500
+        end
+      end
+
       # return credentials for a given room (and possibly user)
       def credentials
         session = Session.find_by(id: params[:id])
