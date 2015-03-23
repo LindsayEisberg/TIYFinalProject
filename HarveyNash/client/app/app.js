@@ -17,7 +17,6 @@ angular
     'ngResource',
     'ngSanitize',
     'ngTouch',
-    'ngMessages',
     'ui.bootstrap',
     'ui.bootstrap.datetimepicker'
 

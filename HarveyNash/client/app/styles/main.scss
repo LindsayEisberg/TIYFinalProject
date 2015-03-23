@@ -98,20 +98,6 @@ h4 {
  }
 
 //main page
-#large-header {
-    background: -webkit-linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(../images/group1.jpg);
-    background: -o-linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(../images/group1.jpg);
-    background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(../images/group1.jpg);
-    min-height: 100%;
-    min-width: 1024px;
-    width: 100%;
-    height: auto;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-size: cover;
-
-  }
 
 .main-title {
     position: absolute;
@@ -208,11 +194,17 @@ a {
 
 
 //Login Form
+#registerModal {
+  z-index: 9999;
+  background: rgba(0,0,0,0.5);
+}
+
 #mainLog {
   left: 50%;
   position: fixed;
   top: 50%;
   @include transform(translate(-33%, -60%));
+  z-index: 9999;
   }
 
   #registerLog {
@@ -220,17 +212,22 @@ a {
     position: fixed;
     top: 50%;
     @include transform(translate(-33%, -60%));
+
+
   }
+
 
 #loginContent {
   width: 400px;
   background: rgba(210, 212, 213, 0.8);
+
 
 }
 
 #registerContent {
   width: 400px;
   background: rgba(210, 212, 213, 0.8);
+
 }
 
 .loginHeader {
@@ -430,6 +427,133 @@ ot-layout {
 
 }
 
+.eventName {
+  margin-left: -19px;
+  &::before {
+    display: inline-block;
+    opacity: 0;
+    @include transition2(transform 0.3s, opacity 0.2s);
+  }
+  &::after {
+    display: inline-block;
+    opacity: 0;
+    @include transition2(transform 0.3s, opacity 0.2s);
+  }
+}
+
+.eventName::before {
+  margin-right: 10px;
+  content: '[';
+  @include transform(translateX(20px));
+  color: $dark;
+}
+
+.eventName::after {
+  margin: 10px;
+  content: ']';
+  @include transform(translateX(-20px));
+  color: $dark;
+
+}
+
+.eventName:hover::before, .eventName:hover::after, .eventName:focus::before, .eventName:focus::after {
+  opacity: 1;
+  @include transform(translateX(0px));
+  color: $dark;
+}
+
+
+
+
+.createEvent {
+  .createBtn   {
+    background: rgba(210, 175, 60, 1.0);
+    color: $lightest;
+    border-radius: 0px;
+    padding: 8px 15px 10px 15px;
+    border: 0px;
+    &:hover {
+      background: $accent;
+      opacity: 1.0;
+      @include trans(all 0.5s ease);
+    }
+  }
+}
+
+.submitEvent {
+  background: rgba(210, 175, 60, 1.0);
+  color: $lightest;
+  border-radius: 0px;
+  padding: 10px 15px 10px 15px;
+  border: 0px;
+  margin-top: 10px;
+  width: 100%;
+  &:hover {
+  background: $accent;
+  opacity: 1.0;
+  @include trans(all 0.5s ease);
+  }
+}
+
+.fa-angle-double-down {
+  font-size: 25px;
+  margin-top: 2px;
+  margin-left: 8px;
+  vertical-align: sub;
+}
+
+.newRoom {
+  .newEventForm {
+    margin-top: 20px;
+    .form-control {
+      border-radius: 0px;
+      border: 0;
+    }
+    label {
+      font-family: $minion;
+      font-size: 1.3em;
+      color: $dark;
+      font-weight: 400;
+    }
+  }
+}
+.acctEdit {
+
+}
+
+.createEvent:before, .acctEdit:before {
+  background-color: $gray;
+  content: "";
+  height: 20px;
+  left: 50%;
+  margin: -4px 0 0 -4px;
+  position: absolute;
+  top: -6px;
+  width: 20px;
+  @include transform(rotate(45deg));
+}
+
+#large {
+    background: -webkit-linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(../images/group1.jpg);
+    background: -o-linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(../images/group1.jpg);
+    background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(../images/group1.jpg);
+    min-height: 100%;
+    min-width: 1024px;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    z-index: 0;
+
+  }
+
+
+.modal-backdrop {
+  z-index: 0;
+  display: none;
+}
 /* Responsive: Portrait tablets and up */
 @media screen and (max-width: 1024px) {
   #large-header{

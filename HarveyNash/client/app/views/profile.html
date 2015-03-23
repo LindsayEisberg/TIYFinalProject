@@ -10,27 +10,33 @@
             <p>Username: {{userCtrl.singleUser.username}}</p>
             <p>Email: {{userCtrl.singleUser.email}}</p>
             <p>Blurb: {{userCtrl.singleUser.blurb}}</p>
+            <div class="acctEdit">
+              <a href="">Edit Account Information</a>
+            </div>
         </div>
+
       </div>
       <div class="col-md-6" id="eventInfo">
         <div ng-controller="EventController as eventCtrl">
           <h3>Event Listing</h3>
             <ul>
               <li ng-repeat="event in eventCtrl.events">
-                <a href="#/auditorium" class="eventName"><h4>{{event.name}}</h4></a>
+                <a href="#/auditorium"><h4 class="eventName">{{event.name}}</h4></a>
                 <p><span class="eventDescrip">{{event.description}}</span><span class="eventTime">{{event.date | date: 'short'}}</span></p>
                 <hr>
               </li>
             </ul>
-            <button ng-click="eventCtrl.toggleShow()">Create New Event</button>
+            <div class="createEvent">
+            <button ng-click="eventCtrl.toggleShow()" class="createBtn">Create New Event <i class="fa fa-angle-double-down"></i>
+</button></div>
             <div class="newRoom" ng-show="eventCtrl.form">
               <form ng-submit="eventCtrl.addNewEvent(newEvent)">
                 <div class="newEventForm">
-                  <p>Session Name</p>
-                  <input type="text" ng-model="newEvent.name" placeholder="Event Name">
-                  <p>Please provide a short description of the Video Session</p>
-                  <textarea ng-model="newEvent.description" name="newEventDescription" id="newEventDescription" rows="10" placeholder="Description of Session"></textarea>
-                  <p>Select Date and Time</p>
+                  <label for="newEventName">Session Name</label>
+                  <input type="text" name="newEventName" class="form-control" id="newEventName" ng-model="newEvent.name" placeholder="Event Name">
+                  <label for="newEventDescription">Please provide a short description of the Video Session</label>
+                  <textarea ng-model="newEvent.description" name="newEventDescription" id="newEventDescription" class="form-control" rows="10" placeholder="Description of Session"></textarea>
+                  <label for="dateTime">Select Date and Time</label>
                   <datetimepicker min-date="minDate" show-weeks="showWeeks" hour-step="1" minute-step="15" ng-model="newEvent.date" show-meridian="true" date-format="dd-MMM-yyyy" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" readonly-time="false"></datetimepicker>
                   <label for="guests">Will unregistered guests be allowed into your event?</label>
                   <select class="form-control" id-"guests">
@@ -58,7 +64,7 @@
                     <option>topic 6</option>
                   </select>
 
-                  <button type="submit">Add New Event</button>
+                  <button type="submit" class="submitEvent">Add New Event</button>
                 </div>
               </form>
             </div>

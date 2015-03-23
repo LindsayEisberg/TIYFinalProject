@@ -17,6 +17,11 @@
 
       userCtrl.currentIndex = $routeParams.userid;
 
+      userCtrl.updateInfo = function (user) {
+        UserService.editUser(user);
+
+};
+
 
 
 
