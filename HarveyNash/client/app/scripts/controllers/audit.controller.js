@@ -65,6 +65,13 @@
               }
               $scope.session.on('sessionConnected', connectDisconnect.bind($scope.session, true));
               $scope.session.on('sessionDisconnected', connectDisconnect.bind($scope.session, false));
+              $scope.session.on("signal:stageChange", function(event) {
+                console.log("That stage done changed!!!");
+                RoomService.centerStageIds($scope.roomId)
+                  .success(function (ids) {
+                    $scope.stageMembers = ids;
+                  });
+              });
             });
             $scope.streams = OTSession.streams;
             $scope.initialized = true;
@@ -77,8 +84,8 @@
         RoomService.centerStageAdd($scope.roomId,newCenterStageUserId)
           .success(function(ids) {
             $scope.stageMembers.push(newCenterStageUserId);
-            
             console.log($scope.stageMembers);
+            $scope.session.signal({type:"stageChange"});
           });
       };
 
