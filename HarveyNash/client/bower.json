@@ -12,11 +12,18 @@
     "angular-touch": "1.3.0",
     "angular-bootstrap": "0.12.1",
     "angular-ui-utils": "bower",
+<<<<<<< HEAD
     "opentok-layout-js": "0.0.12",
     "opentok-editor": "0.1.1",
     "font-awesome": "4.3.0",
     "underscore": "1.8.2",
     "angular-ui-bootstrap-datetimepicker": "0.11.2"
+=======
+    "font-awesome": "~4.3.0",
+    "underscore": "~1.8.2",
+    "opentok-layout-js": "0.0.12",
+    "angular-messages": "~1.3.14"
+>>>>>>> multi-party-room
   },
   "devDependencies": {
     "angular-mocks": "1.3.0"
@@ -24,7 +31,14 @@
   "appPath": "app",
   "moduleName": "app",
   "resolutions": {
+<<<<<<< HEAD
     "angular": "1.3.0",
     "opentok-layout-js": "0.0.12"
   }
+=======
+    "angular": "1.3.14",
+    "opentok-layout-js": "0.0.12"
+
+}
+>>>>>>> multi-party-room
 }

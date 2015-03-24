@@ -64,7 +64,7 @@ Rails.application.routes.draw do
       post 'auth' => 'auth#authenticate'
 
       # users
-      get 'users' => 'users#index'
+      get 'profile' => 'users#index'
       get 'profile/:id' => 'users#show'
       put 'profile/:id' => 'users#update'
       patch 'profile/:id' => 'users#update'
@@ -73,7 +73,13 @@ Rails.application.routes.draw do
       # sessions
       get 'sessions/active' => 'sessions#active_sessions'
       get 'sessions/open' => 'sessions#open'
+      get 'sessions/:id' => 'sessions#show'
+      get 'sessions/:id/center_stage' => 'sessions#center_stage'
+      post 'sessions/:id/center_stage/:user_id' => 'sessions#center_stage_add'
+      delete 'sessions/:id/center_stage/:user_id' => 'sessions#center_stage_remove'
       get 'sessions/:id/close' => 'sessions#close'
+      get 'sessions/:id/credentials' => 'sessions#credentials'
+      get 'sessions/:id/token' => 'sessions#token'
 
     end
   end

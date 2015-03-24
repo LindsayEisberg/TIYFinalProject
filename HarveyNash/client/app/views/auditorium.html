@@ -1,32 +1,31 @@
-
-<div ng-controller="RoomController as roomCtrl">
-    <ot-layout props="{animate:true}">
-        <ot-subscriber ng-repeat="stream in streams"
-            stream="stream"
-            props="{style: {nameDisplayMode: 'off'}}">
+<div class="container">
+  <div class="row">
+    <div id="session" ng-class="{'session-connected': connected}">
+      <ot-layout props="{animate:true,bigFixedRatio:true}">
+        <ot-subscriber ng-repeat="stream in streams" stream="stream" props="{style: {nameDisplayMode: 'on'}}">
         </ot-subscriber>
-        <ot-publisher id="publisher"
-            apiKey="45176582"
-            props="{style: {nameDisplayMode: 'off'}, resolution: '1280x720', frameRate: 30}">
-        </ot-publisher>
-    </ot-layout>
-</div>
-
-<!-- 
-
-
-<div ng-class="{'mouse-move': mouseMove}">
-  <div id="session" ng-class="{'session-connected': connected}">
-    <ot-layout props="{animate:true,bigFixedRatio:true}">
-      <ot-subscriber ng-repeat="stream in streams | filter:notMine"
-        stream="stream"
-        props="{style: {nameDisplayMode: 'off'}}"
-        ng-class="{OT_big: (stream.oth_large == undefined && stream.name == 'screen') || stream.oth_large}">
-        </ot-subscriber>
-        <ot-publisher id="screenPublisher" ng-if="sharingMyScreen" props="screenPublisherProps" ng-class="{OT_big: screenBig}">
-
-        </ot-publisher>
-
-    </ot-layout>
+        <ot-publisher id="publisher" ng-if="isCenterStage()"></ot-publisher>
+      </ot-layout>
+    </div>
+    <div class="col-md-4">
+      <div class="user-list moderators">
+        <h3>Moderators</h3>
+        <ul ng-repeat="user in moderators">
+          <li>{{ user.username }}</li>
+        </ul>
+      </div>
+      <div class="user-list questions">
+        <h3>Questions</h3>
+        <ul ng-repeat="question in questions">
+          <li>question</li>
+        </ul>
+      </div>
+      <div class="user-list audience">
+        <h3>Audience</h3>
+        <ul ng-repeat="user in subscribers">
+          <li ng-class="{{ user.present }}">{{ user.username }}</li>
+        </ul>
+      </div>
+    </div>
   </div>
-</div> -->
+</div>

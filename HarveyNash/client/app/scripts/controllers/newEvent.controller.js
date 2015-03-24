@@ -25,7 +25,3 @@
     });
 
 })();
-
-
-// addEvent: addNewEvent (event)
-// addHero: addSuperHero (her0)

@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  has_many :session_users
+  has_many :sessions, :through => :session_users
+  
   attr_accessor :password
   validates_presence_of :password, :on => :create
   validates_presence_of :username, :email

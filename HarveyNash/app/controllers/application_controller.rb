@@ -7,6 +7,9 @@ end
 # Auth Solution borrowed from:
 # http://adamalbrecht.com/2014/12/04/add-json-web-token-authentication-to-your-angular-rails-app/
 class ApplicationController < ActionController::API
+  # include implicit render so we can use jbuilder
+  include ActionController::ImplicitRender
+  
   # TODO: this will need to be skipped on public calls
   # before_action :set_current_user, :authenticate_request
 
