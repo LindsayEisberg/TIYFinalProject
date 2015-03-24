@@ -80,23 +80,29 @@
 
       // put a user on the center stage
       $scope.centerStageAdd = function(newCenterStageUserId) {
-        // add the user to the center stage
-        RoomService.centerStageAdd($scope.roomId,newCenterStageUserId)
-          .success(function(ids) {
-            $scope.stageMembers.push(newCenterStageUserId);
-            console.log($scope.stageMembers);
-            $scope.session.signal({type:"stageChange"});
-          });
+        // if the current user is a moderator
+        if ($scope.credData.role == "moderator") {
+          // add the user to the center stage
+          RoomService.centerStageAdd($scope.roomId,newCenterStageUserId)
+            .success(function(ids) {
+              $scope.stageMembers.push(newCenterStageUserId);
+              console.log($scope.stageMembers);
+              $scope.session.signal({type:"stageChange"});
+            });
+        };
       };
 
       // remove a user from the center stage
       $scope.centerStageRemove = function(centerStageUserId) {
-        RoomService.centerStageRemove($scope.roomId, centerStageUserId)
-          .success(function(ids) {
-            var idx = $scope.stageMembers.indexOf(centerStageUserId);
-            $scope.stageMembers.splice(idx);
-            $scope.session.signal({type:"stageChange"});
-          });
+        // if the current user is a moderator
+        if ($scope.credData.role == "moderator") {
+          RoomService.centerStageRemove($scope.roomId, centerStageUserId)
+            .success(function(ids) {
+              var idx = $scope.stageMembers.indexOf(centerStageUserId);
+              $scope.stageMembers.splice(idx);
+              $scope.session.signal({type:"stageChange"});
+            });
+        };
       };
 
       // return true if the given user_id is currently on the center
