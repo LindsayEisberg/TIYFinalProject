@@ -20,7 +20,7 @@
         // get room data
         $scope.getRoomData($scope.roomId);
         // get join room
-        $scope.joinRoom($scope.roomId, $scope.currentUserId)
+        $scope.joinRoom($scope.roomId, $scope.currentUserId);
       };
 
       $scope.getRoomData = function(roomId) {
@@ -37,6 +37,11 @@
 
       // initialize session
       $scope.joinRoom = function(roomId, userId) {
+        // declare that I am entering the room
+        RoomService.declareEnter(roomId,userId)
+          .success(function(roomData) {
+            $scope.getRoomData(roomId);
+          });
         // get the room credentials which includes:
         // - OTApiKey
         // - OTSessionId
@@ -72,6 +77,12 @@
                     $scope.stageMembers = ids;
                   });
               });
+              $scope.session.on('sessionConnected', $scope.getRoomData(roomId));
+              $scope.session.on("signal:infoChange", function(event) {
+                console.log("Room info has changed!!!");
+                $scope.getRoomData(roomId);
+              })
+              session.signal({type:"infoChange"});
             });
             $scope.streams = OTSession.streams;
             $scope.initialized = true;

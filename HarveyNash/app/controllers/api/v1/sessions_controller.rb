@@ -81,6 +81,32 @@ module Api
                  }
         render json: result
       end
+
+      # should be called when a user joins a room
+      def enter_room
+        session = Session.find(params[:id])
+        user_id = params[:user_id]
+        # get the session user (this exists if the user is registered for the session)
+        session_user = SessionUser.where("session_id = ? and user_id = ?", session.id, user_id)[0]
+        if session_user
+          # this user is now present
+          session_user.update(present: true);
+        end
+        redirect_to :action => "show", :id => session.id        
+      end
+
+      # should be called when a user exits a room
+      def exit_room
+        session = Session.find(params[:id])
+        user_id = params[:user_id]
+        # get the session user (this exists if the user is registered for the session)
+        session_user = SessionUser.where("session_id = ? and user_id = ?", session.id, user_id)[0]
+        if session_user
+          # this user is no longer present
+          session_user.update(present: false);
+        end
+        redirect_to :action => "show", :id => session.id
+      end
         
       # get info for a given session
       def show
