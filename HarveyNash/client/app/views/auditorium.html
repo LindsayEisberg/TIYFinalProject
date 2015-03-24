@@ -1,12 +1,5 @@
 <div class="container">
   <div class="row">
-    <div id="session" ng-class="{'session-connected': connected}">
-      <ot-layout props="{animate:true,bigFixedRatio:true}">
-        <ot-subscriber ng-repeat="stream in streams" stream="stream" props="{style: {nameDisplayMode: 'on'}}">
-        </ot-subscriber>
-        <ot-publisher id="publisher" ng-if="isCenterStage()"></ot-publisher>
-      </ot-layout>
-    </div>
     <div class="col-md-4">
       <div class="user-list moderators">
         <h3>Moderators</h3>
@@ -16,15 +9,26 @@
       </div>
       <div class="user-list questions">
         <h3>Questions</h3>
-        <ul ng-repeat="question in questions">
-          <li>question</li>
+        <ul ng-repeat="message in messages">
+          <li>{{message}}</li>
         </ul>
+        <input type="text" placeholder="Enter Question" ng-model="newMessage" class="chatQuestion">
+        <button type="submit" ng-click="addNewMessage(newMessage)" class="btn btn-default">Enter Question</button>
       </div>
       <div class="user-list audience">
         <h3>Audience</h3>
         <ul ng-repeat="user in subscribers">
           <li ng-class="{{ user.present }}">{{ user.username }}</li>
         </ul>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div id="session" ng-class="{'session-connected': connected}">
+        <ot-layout props="{animate:true,bigFixedRatio:true}">
+          <ot-subscriber ng-repeat="stream in streams" stream="stream" props="{style: {nameDisplayMode: 'on'}}">
+          </ot-subscriber>
+          <ot-publisher id="publisher" ng-if="isCenterStage()"></ot-publisher>
+        </ot-layout>
       </div>
     </div>
   </div>

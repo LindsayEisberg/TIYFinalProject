@@ -9,6 +9,8 @@
         userCtrl.users = data;
       });
 
+      // userCtrl.questions = UserService.getQuestion();
+
       UserService.getSingleUser($routeParams.userid).success(function(data) {
         userCtrl.singleUser = data;
         console.log(data.id);
