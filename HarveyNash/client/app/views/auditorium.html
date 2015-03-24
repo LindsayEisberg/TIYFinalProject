@@ -9,11 +9,9 @@
       </div>
       <div class="user-list questions">
         <h3>Questions</h3>
-        <ul ng-repeat="message in messages">
-          <li>{{message}}</li>
+        <ul ng-repeat="question in questions">
+          <li>question</li>
         </ul>
-        <input type="text" placeholder="Enter Question" ng-model="newMessage" class="chatQuestion">
-        <button type="submit" ng-click="addNewMessage(newMessage)" class="btn btn-default">Enter Question</button>
       </div>
       <div class="user-list audience">
         <h3>Audience</h3>
@@ -32,4 +30,3 @@
       </div>
     </div>
   </div>
-</div>
