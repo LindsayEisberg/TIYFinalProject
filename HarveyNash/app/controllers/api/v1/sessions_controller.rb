@@ -19,6 +19,34 @@ module Api
         render json: @session
       end
 
+      # create a new session
+      def create
+        session = Session.new
+        session.name = params[:name]
+        session.description = params[:description]
+        # TODO: need date
+        # TODO: need topic
+        # add ot_session.id
+        ot_session = @@opentok.create_session({media_mode: :routed})
+        session.session_id = ot_session.session_id
+        # try and save the session
+        saved = session.save
+        # add moderators
+        params[:moderators].each do |moderator|
+          SessionUser.create(session_id: session.id, user_id: moderator[:id], role: 'moderator', center_stage: true)
+        end
+        # add subscribers
+        params[:subscribers].each do |subscriber|
+          puts subscriber
+          SessionUser.create(session_id: session.id, user_id: subscriber[:id], role: 'publisher', center_stage: false)
+        end
+        if saved
+          render json: {message: "Event: #{session.name} successfully added"}, status: 200
+        else
+          render json: {errors: session.errors.to_json}, status: 500
+        end
+      end
+
       # center stage users
       def center_stage
         center_stage_ids = SessionUser.where("session_id = ? and center_stage = ?",

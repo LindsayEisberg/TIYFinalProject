@@ -37,10 +37,10 @@
 
 };
 
-    var addNewEvent = function (eventUrl, eventId) {
+    var addNewEvent = function (event) {
       // events.push(event);
-      console.log('add new event: ' + eventUrl + '/' + eventId);
-      return $http.post(eventUrl + '/' + eventId);
+      console.log('add new event: ' + eventUrl);
+      return $http.post(eventUrl, event);
     // $rootScope.$broadcast('event:created');
   };
 

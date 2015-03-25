@@ -74,6 +74,7 @@ Rails.application.routes.draw do
       get 'sessions/active' => 'sessions#active_sessions'
       get 'sessions/open' => 'sessions#open'
       get 'sessions/:id' => 'sessions#show'
+      post 'sessions' => 'sessions#create'
       post 'sessions/:id/enter/:user_id' => 'sessions#enter_room'
       post 'sessions/:id/exit/:user_id' => 'sessions#exit_room'
       get 'sessions/:id/center_stage' => 'sessions#center_stage'
