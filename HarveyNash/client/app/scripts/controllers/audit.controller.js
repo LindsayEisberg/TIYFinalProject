@@ -7,20 +7,23 @@
       $scope.initialized = false;
       $scope.roomId = $routeParams.roomId;
       $scope.currentUserId = $routeParams.userId;
+      $scope.roomMembers = [];
+      $scope.roomMembers.push(Number($scope.currentUserId));
       $scope.stageMembers = [];
       $scope.showIt = false;
 
       $scope.init = function() {
+        // get room data
+        $scope.getRoomData($scope.roomId)
+        // get join room
+        $scope.joinRoom($scope.roomId, $scope.currentUserId);
         // get current stage members
         RoomService.centerStageIds($scope.roomId)
           .success(function(ids) {
             console.log("centerStageIds:" + ids);
             $scope.stageMembers = ids;
           });
-        // get room data
-        $scope.getRoomData($scope.roomId);
-        // get join room
-        $scope.joinRoom($scope.roomId, $scope.currentUserId);
+        
       };
 
       $scope.getRoomData = function(roomId) {
@@ -37,11 +40,6 @@
 
       // initialize session
       $scope.joinRoom = function(roomId, userId) {
-        // declare that I am entering the room
-        RoomService.declareEnter(roomId,userId)
-          .success(function(roomData) {
-            $scope.getRoomData(roomId);
-          });
         // get the room credentials which includes:
         // - OTApiKey
         // - OTSessionId
@@ -53,7 +51,7 @@
             //
             if ($scope.session) {
               $scope.session.disconnect();
-            }
+            };
             OTSession.init(credData.OTApiKey, credData.OTSessionId, credData.OTToken, function(err, session) {
               $scope.session = session;
               $scope.session.apiKey = credData.OTApiKey;
@@ -67,57 +65,85 @@
               };
               if ((session.is && session.is('connected')) || session.connected) {
                 connectDisconnect(true);
-              }
-              $scope.session.on('sessionConnected', connectDisconnect.bind($scope.session, true));
-              $scope.session.on('sessionDisconnected', connectDisconnect.bind($scope.session, false));
-              $scope.session.on("signal:stageChange", function(event) {
-                console.log("That stage done changed!!!");
-                RoomService.centerStageIds($scope.roomId)
-                  .success(function (ids) {
-                    $scope.stageMembers = ids;
-                  });
+                $scope.session.signal({type:'stageChange'});
+                $scope.session.signal({type:'infoChange'});
+              };
+              $scope.session.on('sessionConnected', function() {
+                connectDisconnect.bind($scope.session, true);
+                $scope.session.signal({type:'stageChange'});
+                $scope.session.signal({type:'infoChange'});
               });
-              $scope.session.on('sessionConnected', $scope.getRoomData(roomId));
+              $scope.session.on('sessionDisconnected', connectDisconnect.bind($scope.session, false));
+              // register for the signals we need
               $scope.session.on("signal:infoChange", function(event) {
                 console.log("Room info has changed!!!");
-                $scope.getRoomData(roomId);
-              })
-              session.signal({type:"infoChange"});
+                $scope.$apply( function() {
+                  $scope.roomMembers = _.map($scope.session.connections.where(),
+                                             function(con) { return Number(con.data); });
+                });
+              });
+              $scope.session.on("signal:addToCenterStage", function(event) {
+                var userId = event.data;
+                console.log("Adding user to center stage: " + userId);
+                $scope.$apply(function(){
+                  $scope.stageMembers.push(userId);
+                });
+              });
+              $scope.session.on("signal:removeFromCenterStage", function(event) {
+                var userId = event.data;
+                console.log("Removing user from center stage: " + userId);
+                var idx = $scope.stageMembers.indexOf(userId);
+                $scope.$apply(function() {
+                  $scope.stageMembers.splice(idx, 1);
+                });
+              });
+              $scope.session.on('connectionCreated'), function(event) {
+                var userId = JSON.parse(event.connection.data);
+                console.log("User has joined room: " + userId);
+                $scope.session.signal({type:'infoChange'});
+              };
+              $scope.session.on('connectionDestroyed', function(event) {
+                var userId = JSON.parse(event.connection.data);
+                console.log("User has left room: " + userId);
+                $scope.session.signal({type:'infoChange'});
+              });
+              $scope.streams = OTSession.streams;
+              $scope.initialized = true;
             });
-            $scope.streams = OTSession.streams;
-            $scope.initialized = true;
           });
       };
 
+      // add or remove a user from center stage
+      $scope.centerStageToggle = function(userId) {
+        if ($scope.isCenterStage(userId)) {
+          $scope.centerStageRemove(userId);
+        } else {
+          $scope.centerStageAdd(userId);
+        };
+      };
+      
       // put a user on the center stage
-      $scope.centerStageAdd = function(newCenterStageUserId) {
+      $scope.centerStageAdd = function(userId) {
         // add the user to the center stage
-        RoomService.centerStageAdd($scope.roomId,newCenterStageUserId)
-          .success(function(ids) {
-            $scope.stageMembers.push(newCenterStageUserId);
-            console.log($scope.stageMembers);
-            $scope.session.signal({type:"stageChange"});
-          });
+        $scope.session.signal({type:'addToCenterStage', data:userId});
       };
 
       // remove a user from the center stage
-      $scope.centerStageRemove = function(centerStageUserId) {
-        RoomService.centerStageRemove($scope.roomId, centerStageUserId)
-          .success(function(ids) {
-            var idx = $scope.stageMembers.indexOf(centerStageUserId);
-            $scope.stageMembers.splice(idx);
-            $scope.session.signal({type:"stageChange"});
-          });
+      $scope.centerStageRemove = function(userId) {
+        $scope.session.signal({type:'removeFromCenterStage', data:userId});
       };
 
       // return true if the given user_id is currently on the center
       // stage
-      $scope.isCenterStage = function() {
-        return $scope.initialized && _.includes($scope.stageMembers, Number($scope.currentUserId));
+      $scope.isCenterStage = function(userId) {
+        return _.includes($scope.stageMembers, Number(userId));
+      };
+
+      $scope.present = function(userId) {
+        return $scope.initialized && _.includes($scope.roomMembers, userId);
       };
 
       // run teh codez
       $scope.init();
-
     });
 })();

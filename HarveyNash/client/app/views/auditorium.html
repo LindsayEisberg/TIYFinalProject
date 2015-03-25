@@ -6,14 +6,14 @@
       <ot-layout props="{animate:true,bigFixedRatio:true}">
         <ot-subscriber ng-repeat="stream in streams" stream="stream" props="{style: {nameDisplayMode: 'on'}}">
         </ot-subscriber>
-        <ot-publisher id="publisher" ng-if="isCenterStage()"></ot-publisher>
+        <ot-publisher id="publisher" ng-if="isCenterStage(currentUserId)" props="{name: currentUserId}"></ot-publisher>
       </ot-layout>
     </div>
     <div class="col-md-4">
       <div class="user-list moderators">
         <h3>Moderators</h3>
         <ul ng-repeat="user in moderators">
-          <li ng-class="{'present': user.present}">{{ user.username }}</li>
+          <li ng-class="{'present': present({{user.id}}), 'center-stage': isCenterStage({{user.id}})}">{{ user.username }}</li>
         </ul>
       </div>
       <div class="user-list questions">
@@ -25,12 +25,16 @@
       <div class="user-list audience">
         <h3>Audience</h3>
         <ul ng-repeat="user in subscribers">
-          <li ng-class="{'present': user.present}">
+          <li ng-class="{'present': present({{user.id}}), 'center-stage': isCenterStage({{user.id}})}">
             <span>{{ user.username }}</span>
-            <button  ng-click="centerStageAdd({{user.id}})"ng-if="credData.role == 'moderator'">AddMe!</button>
+            <button  ng-click="centerStageToggle({{user.id}})" ng-if="credData.role == 'moderator'">+</button>
           </li>
         </ul>
       </div>
     </div>
   </div>
 </div>
+
+
+
+
