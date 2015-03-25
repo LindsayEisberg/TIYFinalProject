@@ -101,6 +101,17 @@ h4 {
 
 //main page
 
+.splashPage {
+ background: rgba(0, 0, 0, 0.3);
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate3d(56%, 60%, 0);
+  transform: translate3d(56%, 60%, 0);
+  height: 300px;
+  width:700px;
+  border: 1px solid $lightest;
+  border-radius: 10px;
+}
 .main-title {
     position: absolute;
     margin: 0;
@@ -122,7 +133,7 @@ h4 {
 
 .sub-head {
 @extend .main-title;
-color: $brown;
+color: $lightest;
 font-size: 2.4em;
 border: 0px;
 font-weight: 400;
@@ -362,12 +373,22 @@ ot-layout {
   bottom: 0;
 }
 
+.user-list {
+  color: $light2;
+}
+
 .present {
   font-weight: bold;
 }
 
 .center-stage {
-  color: red;              
+  color: $accent;              
+}
+
+.auditSide-Header {
+  color:$lightest;
+  text-align: left;
+  font-family: $minion;
 }
 
 //profile page
@@ -429,6 +450,9 @@ ot-layout {
       @include transform(rotate(90deg));
     }
     .profilePage {
+      padding-left: 260px;
+    }
+    .auditorium {
       padding-left: 260px;
     }
   }
