@@ -15,22 +15,20 @@
             </div>
         </div>
 
-      </div>
       <div class="col-md-6" id="eventInfo">
-        <div ng-controller="EventController as eventCtrl">
           <h3>Event Listing</h3>
             <ul>
-              <li ng-repeat="event in eventCtrl.events">
-                <a href="#/auditorium"><h4 class="eventName">{{event.name}}</h4></a>
+              <li ng-repeat="event in userCtrl.events">
+                <a href="#/auditorium/{{$index}}?userid={{user.id}}"><h4 class="eventName">{{event.name}}</h4></a>
                 <p><span class="eventDescrip">{{event.description}}</span><span class="eventTime">{{event.date | date: 'short'}}</span></p>
                 <hr>
               </li>
             </ul>
             <div class="createEvent">
-            <button ng-click="eventCtrl.toggleShow()" class="createBtn">Create New Event <i class="fa fa-angle-double-down"></i>
+            <button ng-click="userCtrl.toggleShow()" class="createBtn">Create New Event <i class="fa fa-angle-double-down"></i>
 </button></div>
-            <div class="newRoom" ng-show="eventCtrl.form">
-              <form ng-submit="eventCtrl.addNewEvent(newEvent)">
+            <div class="newRoom" ng-show="userCtrl.form">
+              <form ng-submit="userCtrl.addNewEvent(newEvent)">
                 <div class="newEventForm">
                   <label for="newEventName">Session Name</label>
                   <input type="text" name="newEventName" class="form-control" id="newEventName" ng-model="newEvent.name" placeholder="Event Name">
@@ -39,23 +37,37 @@
                   <label for="dateTime">Select Date and Time</label>
                   <datetimepicker min-date="minDate" show-weeks="showWeeks" hour-step="1" minute-step="15" ng-model="newEvent.date" show-meridian="true" date-format="dd-MMM-yyyy" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" readonly-time="false"></datetimepicker>
                   <label for="guests">Will unregistered guests be allowed into your event?</label>
-                  <select class="form-control" id-"guests">
+                  <select class="form-control" id="guests">
                     <option>YES</option>
                     <option>NO</option>
                   </select>
 
-                  <label for="moderators">How many moderators will be in the event?</label>
-                  <select class="form-control" id-"moderators">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>More than 5</option>
-                  </select>
+                  <label for="moderators">Check all Moderators for the session</label>
+<!--                   <ul>
+<li ng-repeat="user in userCtrl.users">
+  <p>{{user.username}}</p> -->
+              <!--       <select multiple class="form-control">
+                <option type="checkbox" ng-repeat="user in userCtrl.users">{{user.username}}</option>
+              </select> -->
+                    <div ng-repeat="user in userCtrl.users">
+                      <div class="action-checkbox">
+                       <input id="{{user.username}}" type="checkbox" value="{{user.username}}" ng-checked="selection.indexOf(user.username) > -1" ng-click="toggleSelection(user.username)" ng-model="newEvent.moderators" />
+                       <label for="{{user.username}}"></label>
+                           {{user.username}}
+                      </div>
+                   </div>
 
+                  <!--  <label for="subscribers">Check all required to attend your event</label>
+                  <div ng-repeat="user in userCtrl.users">
+                    <div class="action-checkbox">
+                     <input id="{{user.username}}" type="checkbox" value="{{user.username}}" ng-checked="selection.indexOf(user.username) > -1" ng-click="toggleSelection(user.username)" ng-model="newEvent.subscribers" />
+                     <label for="{{user.username}}"></label>
+                         {{user.username}}
+                    </div>
+                                    </div>
+                   -->
                   <label for="topic">What is the topic of your event?</label>
-                  <select class="form-control" id-"topic">
+                  <select class="form-control" id="topic">
                     <option>topic 1</option>
                     <option>topic 2</option>
                     <option>topic 3</option>

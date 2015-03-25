@@ -49,7 +49,7 @@ angular
       })
       .when('/profile/:userid', {
          templateUrl: "views/profile.html",
-         controller: "EventController as eventCtrl"
+         controller: "UserController as userCtrl"
        })
       .when('/not-found', {
          templateUrl: "views/404.html"
