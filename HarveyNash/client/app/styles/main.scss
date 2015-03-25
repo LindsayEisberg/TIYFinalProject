@@ -48,6 +48,8 @@ $gray: #393939;
 $dark: #221f1f;
 $accent: #d2Af3c;
 $accent2:#75c9b3;
+$brown: #342E2E;
+//$brown: ##736868
 
 
 
@@ -106,8 +108,8 @@ h4 {
     color: $accent;
     left: 50%;
     top: 50%;
-    -webkit-transform: translate3d(-50%, -50%, 0);
-    transform: translate3d(-50%, -50%, 0);
+    -webkit-transform: translate3d(-50%, -121%, 0);
+    transform: translate3d(-50%, -121%, 0);
     text-transform: uppercase;
     font-weight: 900;
     z-index: 100;
@@ -116,6 +118,20 @@ h4 {
     border-top: 2px solid $accent;
     border-bottom: 2px solid $accent;
     padding: 5px;
+}
+
+.sub-head {
+@extend .main-title;
+color: $brown;
+font-size: 2.4em;
+border: 0px;
+font-weight: 400;
+font-family: $minion;
+-webkit-transform: translate3d(-50%, -16%, 0);
+    transform: translate3d(-50%, -16%, 0);
+
+
+  
 }
 
 

@@ -7,7 +7,7 @@
       var eventUrl = 'http://localhost:3000/api/v1/sessions'
 
       var events = [
-      {
+      { 
         name: 'Event Name',
         description: 'Event Descrip',
         date: '10/20/15 12:00 AM',
@@ -20,7 +20,8 @@
          [
            { id: 1, username: 'Kelli'},
            {id: 2, username: 'Bob Saget'}
-         ]
+         ],
+         topic: 'Technology'
       }
     ];
 

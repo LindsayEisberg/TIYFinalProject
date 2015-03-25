@@ -7,10 +7,11 @@
       <div ng-controller="UserController as userCtrl">
           <div class="col-md-6" id="acctInfo">
             <h3>Account Information</h3>
+            <p>Name: {{userCtrl.singleUser.name}}</p>
             <p>Username: {{userCtrl.singleUser.username}}</p>
             <p>Email: {{userCtrl.singleUser.email}}</p>
-            <p>Blurb: {{userCtrl.singleUser.blurb}}</p>
-            <div class="acctEdit">
+<!--             <p>Blurb: {{userCtrl.singleUser.blurb}}</p>
+ -->            <div class="acctEdit">
               <a href="">Edit Account Information</a>
             </div>
         </div>
@@ -43,37 +44,21 @@
                   </select>
 
                   <label for="moderators">Check all Moderators for the session</label>
-<!--                   <ul>
-<li ng-repeat="user in userCtrl.users">
-  <p>{{user.username}}</p> -->
-              <!--       <select multiple class="form-control">
-                <option type="checkbox" ng-repeat="user in userCtrl.users">{{user.username}}</option>
-              </select> -->
-                    <div ng-repeat="user in userCtrl.users">
-                      <div class="action-checkbox">
-                       <input id="{{user.username}}" type="checkbox" value="{{user.username}}" ng-checked="selection.indexOf(user.username) > -1" ng-click="toggleSelection(user.username)" ng-model="newEvent.moderators" />
-                       <label for="{{user.username}}"></label>
-                           {{user.username}}
-                      </div>
-                   </div>
+                  <select multiple class="form-control" name="moderators" id="moderators" ng-model="newEvent.moderators" ng-options="user as user.username for user in userCtrl.users"></select>
 
-                  <!--  <label for="subscribers">Check all required to attend your event</label>
-                  <div ng-repeat="user in userCtrl.users">
-                    <div class="action-checkbox">
-                     <input id="{{user.username}}" type="checkbox" value="{{user.username}}" ng-checked="selection.indexOf(user.username) > -1" ng-click="toggleSelection(user.username)" ng-model="newEvent.subscribers" />
-                     <label for="{{user.username}}"></label>
-                         {{user.username}}
-                    </div>
-                                    </div>
-                   -->
+                  <label for="subscribers">Check all required attendees for the session</label>
+                  <select multiple class="form-control" name="subscribers" id="subscribers" ng-model="newEvent.subscribers" ng-options="user as user.username for user in userCtrl.users"></select>
+
+
                   <label for="topic">What is the topic of your event?</label>
                   <select class="form-control" id="topic">
-                    <option>topic 1</option>
-                    <option>topic 2</option>
-                    <option>topic 3</option>
-                    <option>topic 4</option>
-                    <option>topic 5</option>
-                    <option>topic 6</option>
+                    <option>Technology</option>
+                    <option>News</option>
+                    <option>Sports</option>
+                    <option>Film & TV</option>
+                    <option>Music</option>
+                    <option>Business</option>
+                    <option>Other</option>
                   </select>
 
                   <button type="submit" class="submitEvent">Add New Event</button>

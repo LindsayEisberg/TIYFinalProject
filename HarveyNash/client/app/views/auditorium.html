@@ -2,7 +2,6 @@
 
 
 <div class="container">
-  <div class="row">
     <div id="session" ng-class="{'session-connected': connected}">
       <ot-layout props="{animate:true,bigFixedRatio:true}">
         <ot-subscriber ng-repeat="stream in streams" stream="stream" props="{style: {nameDisplayMode: 'on'}}">
@@ -10,7 +9,10 @@
         <ot-publisher id="publisher" ng-if="isCenterStage()"></ot-publisher>
       </ot-layout>
     </div>
-    <div class="col-md-4">
+
+
+
+    <div class="sidebar">
       <div class="user-list moderators">
         <h3>Moderators</h3>
         <ul ng-repeat="user in moderators">
@@ -33,5 +35,4 @@
         </ul>
       </div>
     </div>
-  </div>
 </div>

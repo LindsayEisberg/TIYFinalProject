@@ -16,12 +16,9 @@
         // })
       });
 
+        $scope.selection=[{}];
 
-        $scope.selection=[];
-
-        // toggle selection for a given employee by name
-
-        $scope.toggleSelection = function toggleSelection(userName) {
+         $scope.toggleSelection = function toggleSelection(userName) {
            var idx = $scope.selection.indexOf(userName);
            // is currently selected
            if (idx > -1) {
