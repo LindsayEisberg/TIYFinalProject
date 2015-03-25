@@ -70,7 +70,7 @@ module Api
           username = "unknown"
           role = :subscriber
         end
-        token = @@opentok.generate_token(session.session_id, {role: role, data: "user_id=#{user_id}"})
+        token = @@opentok.generate_token(session.session_id, {role: role, data: user.id})
         result = {
                   OTApiKey: ENV['OPENTOK_API_KEY'],
                   OTSessionId: session.session_id,
