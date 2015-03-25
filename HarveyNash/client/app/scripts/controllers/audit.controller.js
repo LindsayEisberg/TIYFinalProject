@@ -133,6 +133,16 @@
         $scope.session.signal({type:'removeFromCenterStage', data:userId});
       };
 
+
+      //initializing text chat for users in a session
+      $scope.addNewMessage = function (newMessage) {
+        // RoomService.addNewMessage(newMessage);
+        $scope.posts.push(newMessage);
+        console.log(newMessage);
+        $scope.newMessage = {};
+        console.log(messages);
+
+};
       // return true if the given user_id is currently on the center
       // stage
       $scope.isCenterStage = function(userId) {

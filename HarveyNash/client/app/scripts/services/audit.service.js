@@ -39,6 +39,12 @@
         return $http.get(url + '/' + roomId);
       };
 
+      // var addNewMessage = function (userId, message) {
+      //   console.log("get message:" messages);
+      //   return $http.post(url + '/' + '/' messages);
+      //   $rootScope.$broadcast('message:created');
+      // }
+
       return {
         centerStageAdd: centerStageAdd,
         centerStageRemove: centerStageRemove,
@@ -46,7 +52,9 @@
         declareEnter: declareEnter,
         declareExit: declareExit,
         getCredentials: getCredentials,
-        getRoomData: getRoomData
+        getRoomData: getRoomData,
+        // addNewMessage: addNewMessage
       };
+
     });
 })();

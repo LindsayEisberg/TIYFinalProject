@@ -14,8 +14,10 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/CodeMirror/lib/codemirror.css" />
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="bower_components/angular-ui-bootstrap-datetimepicker/datetimepicker.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -43,7 +45,7 @@
        ga('create', 'UA-XXXXX-X');
        ga('send', 'pageview');
     </script>
-    <script src='//static.opentok.com/webrtc/v2.2/js/opentok.min.js'></script>
+    <script src='//static.opentok.com/webrtc/v2/js/opentok.min.js'></script>
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -58,9 +60,15 @@
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
     <script src="bower_components/opentok-layout-js/opentok-layout.js"></script>
+    <script src="bower_components/CodeMirror/lib/codemirror.js"></script>
+    <script src="bower_components/opentok-angular/opentok-angular.js"></script>
     <script src="bower_components/opentok-editor/opentok-editor.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/angular-ui-bootstrap-datetimepicker/datetimepicker.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-ui-select/dist/select.js"></script>
+    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+    <script src="bower_components/angularjs-dropdown-multiselect/src/angularjs-dropdown-multiselect.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -75,8 +83,6 @@
         <script src="scripts/services/register.service.js"></script>
         <script src="scripts/controllers/user.controller.js"></script>
         <script src="scripts/services/user.service.js"></script>
-        <script src="scripts/controllers/newEvent.controller.js"></script>
-        <script src="scripts/services/newEvent.service.js"></script>
         <script src="scripts/controllers/audit.controller.js"></script>
         <script src="scripts/services/audit.service.js"></script>
         <script src="scripts/services/localStorage.js"></script>
