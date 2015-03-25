@@ -6,6 +6,11 @@ module Api
     class SessionsController < ApplicationController
       @@opentok = OpenTok::OpenTok.new(ENV['OPENTOK_API_KEY'], ENV['OPENTOK_API_SECRET'])
 
+      # render all sessions
+      def index
+        @sessions = Session.all
+      end
+      
       # Return all active sessions
       def active_sessions
         render json: Session.where("active = ?", true)
@@ -26,6 +31,7 @@ module Api
         session.description = params[:description]
         # TODO: need date
         # TODO: need topic
+        session.active = true;
         # add ot_session.id
         ot_session = @@opentok.create_session({media_mode: :routed})
         session.session_id = ot_session.session_id

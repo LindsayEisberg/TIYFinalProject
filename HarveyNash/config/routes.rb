@@ -71,6 +71,7 @@ Rails.application.routes.draw do
       post 'register' => 'users#create'
 
       # sessions
+      get 'sessions' => 'sessions#index'
       get 'sessions/active' => 'sessions#active_sessions'
       get 'sessions/open' => 'sessions#open'
       get 'sessions/:id' => 'sessions#show'

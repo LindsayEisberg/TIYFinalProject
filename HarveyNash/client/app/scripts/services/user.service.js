@@ -5,31 +5,30 @@
     .factory('UserService', function($http, LocalService, $rootScope) {
       var url = "http://localhost:3000/api/v1/profile";
       var eventUrl = 'http://localhost:3000/api/v1/sessions'
-
       var events = [
-      { 
-        name: 'Event Name',
-        description: 'Event Descrip',
-        date: '10/20/15 12:00 AM',
-        guests: 'yes',
-        moderators: [
-          { id: 1, username: 'tnesland'},
-          {id: 2, username: 'foo'}
-        ],
-        subscribers:
-         [
-           { id: 1, username: 'Kelli'},
-           {id: 2, username: 'Bob Saget'}
-         ],
-         topic: 'Technology'
-      }
-    ];
+        { 
+          name: 'Demo Day Fun Time',
+          description: 'Show what we have done so far and hope it works',
+          date: '03/25/15 1:00 PM',
+          guests: 'yes',
+          moderators: [
+            { id: 6, username: 'tnesland'},
+            {id: 29, username: 'lindsay'}
+          ],
+          subscribers:
+          [
+            { id: 1, username: 'Kelli'},
+            {id: 2, username: 'Bob Saget'}
+          ],
+          topic: 'Technology'
+        }
+      ];
 
     var getEvents = function (events) {
       return $http.get(eventUrl);
       // return events;
     };
-
+      
     var getSingleEvent = function(eventId) {
       // return events[index];
       console.log('single event' + eventId);
