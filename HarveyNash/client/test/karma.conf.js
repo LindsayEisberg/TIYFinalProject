@@ -37,9 +37,6 @@ module.exports = function(config) {
       'bower_components/underscore/underscore.js',
       'bower_components/angular-ui-bootstrap-datetimepicker/datetimepicker.js',
       'bower_components/angular-messages/angular-messages.js',
-      'bower_components/angular-ui-select/dist/select.js',
-      'bower_components/lodash/dist/lodash.compat.js',
-      'bower_components/angularjs-dropdown-multiselect/src/angularjs-dropdown-multiselect.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

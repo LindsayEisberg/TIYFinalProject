@@ -1,7 +1,9 @@
 
 
-
-<div class="container">
+<input type="checkbox" id="sidebarToggle">
+<div class="page-wrap">
+  <label for="sidebarToggle" class="toggle">☰</label>
+<div class="container auditorium">
     <div id="session" ng-class="{'session-connected': connected}">
       <ot-layout props="{animate:true,bigFixedRatio:true}">
         <ot-subscriber ng-repeat="stream in streams" stream="stream" props="{style: {nameDisplayMode: 'on'}}">
@@ -14,19 +16,19 @@
 
     <div class="sidebar">
       <div class="user-list moderators">
-        <h3>Moderators</h3>
+        <h3 class="auditSide-Header">Moderators</h3>
         <ul ng-repeat="user in moderators">
           <li ng-class="{'present': present({{user.id}}), 'center-stage': isCenterStage({{user.id}})}">{{ user.username }}</li>
         </ul>
       </div>
       <div class="user-list questions">
-        <h3>Questions</h3>
+        <h3 class="auditSide-Header">Questions</h3>
         <ul ng-repeat="question in questions">
           <li>question</li>
         </ul>
       </div>
       <div class="user-list audience">
-        <h3>Audience</h3>
+        <h3 class="auditSide-Header">Audience</h3>
         <ul ng-repeat="user in subscribers">
           <li ng-class="{'present': present({{user.id}}), 'center-stage': isCenterStage({{user.id}})}">
             <span>{{ user.username }}</span>
@@ -35,6 +37,7 @@
         </ul>
       </div>
     </div>
+  </div>
 </div>
 
 
