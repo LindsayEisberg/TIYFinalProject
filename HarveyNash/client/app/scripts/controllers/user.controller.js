@@ -53,9 +53,20 @@
 
       userCtrl.form = false;
 
-      userCtrl.events = UserService.events;
+      UserService.getEvents().success(function (data) {
+        userCtrl.events = data;
+        console.log(data);
+      });
+
+      // userCtrl.events = UserService.events;
 
       userCtrl.event = UserService.getEvent();
+
+      // UserService.addNewEvent().success(function (newEvent) {
+      //   userCtrl.addNewEvent = newEvent;
+      //   console.log(newEvent);
+      //   $scope.newEvent = {};
+      // });
 
       userCtrl.addNewEvent = function (newEvent) {
         UserService.addNewEvent(newEvent);
@@ -63,7 +74,7 @@
         $scope.newEvent = {};
         console.log(userCtrl.events);
 
-      };
+     };
       $scope.sessionPage = function() {
         $scope.user = JSON.parse(localStorage.auth_token);
         console.log(user.id);

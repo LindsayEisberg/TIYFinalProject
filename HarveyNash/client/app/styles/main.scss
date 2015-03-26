@@ -101,17 +101,7 @@ h4 {
 
 //main page
 
-.splashPage {
- background: rgba(0, 0, 0, 0.3);
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate3d(56%, 60%, 0);
-  transform: translate3d(56%, 60%, 0);
-  height: 300px;
-  width:700px;
-  border: 1px solid $lightest;
-  border-radius: 10px;
-}
+
 .main-title {
     position: absolute;
     margin: 0;
@@ -119,8 +109,8 @@ h4 {
     color: $accent;
     left: 50%;
     top: 50%;
-    -webkit-transform: translate3d(-50%, -121%, 0);
-    transform: translate3d(-50%, -121%, 0);
+    -webkit-transform: translate3d(-50%, -105%, 0);
+    transform: translate3d(-50%, -105%, 0);
     text-transform: uppercase;
     font-weight: 900;
     z-index: 100;
@@ -133,17 +123,26 @@ h4 {
 
 .sub-head {
 @extend .main-title;
+left: 50%;
 color: $lightest;
 font-size: 2.4em;
 border: 0px;
 font-weight: 400;
 font-family: $minion;
--webkit-transform: translate3d(-50%, -16%, 0);
-    transform: translate3d(-50%, -16%, 0);
+-webkit-transform: translate3d(-50%, -7%, 0);
+    transform: translate3d(-50%, -7%, 0);
+width:100%;
 
 
-  
 }
+
+.splashPage {
+  border: 1px solid black;
+  border-radius: 10px;
+  height: 430px;
+  position: relative;
+  margin: 150px;
+  background: rgba(0,0,0,0.3);}
 
 
 nav {
@@ -377,8 +376,22 @@ ot-layout {
   color: $light2;
 }
 
+.enterRoomBtn {
+   color: black;
+  margin-left: 20px;
+  border:0;
+
+}
+
+.subscribeName {
+
+}
+
 .present {
   font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: underline;
+  font-size: 1.4em;
 }
 
 .center-stage {
@@ -429,6 +442,8 @@ ot-layout {
     font-size: 18px;
     margin-bottom: 20px;
     -webkit-font-smoothing:antialiased;
+    display: flex;
+    justify-content: space-between;
   a {
     color: $lightest;
     &:hover {

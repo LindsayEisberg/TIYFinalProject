@@ -5,26 +5,26 @@
     .factory('UserService', function($http, LocalService, $rootScope) {
       var url = "http://localhost:3000/api/v1/profile";
       var eventUrl = 'http://localhost:3000/api/v1/sessions'
-      var events = [
-        { 
-          name: 'Demo Day Fun Time',
-          description: 'Show what we have done so far and hope it works',
-          date: '03/25/15 1:00 PM',
-          guests: 'yes',
-          moderators: [
-            { id: 6, username: 'tnesland'},
-            {id: 29, username: 'lindsay'}
-          ],
-          subscribers:
-          [
-            { id: 1, username: 'Kelli'},
-            {id: 2, username: 'Bob Saget'}
-          ],
-          topic: 'Technology'
-        }
-      ];
+      // var events = [
+      //   { 
+      //     name: 'Demo Day Fun Time',
+      //     description: 'Show what we have done so far and hope it works',
+      //     date: '03/25/15 1:00 PM',
+      //     guests: 'yes',
+      //     moderators: [
+      //       { id: 6, username: 'tnesland'},
+      //       {id: 29, username: 'lindsay'}
+      //     ],
+      //     subscribers:
+      //     [
+      //       { id: 1, username: 'Kelli'},
+      //       {id: 2, username: 'Bob Saget'}
+      //     ],
+      //     topic: 'Technology'
+      //   }
+      // ];
 
-    var getEvents = function (events) {
+    var getEvents = function () {
       return $http.get(eventUrl);
       // return events;
     };
@@ -62,7 +62,7 @@
         getUsers: getUsers,
         getSingleUser: getSingleUser,
         editUser: updateInfo,
-        events: events,
+        // events: events,
         getEvents: getEvents,
         getEvent: getSingleEvent,
         addNewEvent: addNewEvent
