@@ -5,12 +5,12 @@
   <label for="sidebarToggle" class="toggle">☰</label>
 <div class="container auditorium">
     <div id="session" ng-class="{'session-connected': connected}">
-      <ot-layout props="{animate:true,bigFixedRatio:true}">
+      <ot-layout props="{animate:true,bigFixedRatio:true}" class="sessionLayout">
         <ot-subscriber ng-repeat="stream in streams" stream="stream" props="{style: {nameDisplayMode: 'on'}}">
         </ot-subscriber>
         <ot-publisher id="publisher" ng-if="isCenterStage(currentUserId)" props="{name: currentUserId}"></ot-publisher>
       </ot-layout>
-    </div>
+      </div>
 
 
 

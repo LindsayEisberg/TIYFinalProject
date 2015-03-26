@@ -87,6 +87,19 @@
 
       };
 
+      $scope.labels = ["Events Attended", "Average Questions Per Event", "Events Moderated", "Events Subscribed To", "Overall Questions Asked"];
+      $scope.data = [12, 1.8, 4, 8, 22];
+        Chart.defaults.global.colours = [
+    '#1F0909', // blue
+    '#393939', // light grey
+    '#B83535', // red
+    '#6C3F3F', // green
+    '#330F0F', // yellow
+    '#949FB1', // grey
+    '#4D5360'  // dark grey
+  ];
+      
+              
 
 
     });

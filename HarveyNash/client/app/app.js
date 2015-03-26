@@ -18,7 +18,9 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.bootstrap',
-    'ui.bootstrap.datetimepicker'
+    'ui.bootstrap.datetimepicker',
+    'chart.js'
+
 
   ])
   .config(function ($routeProvider) {

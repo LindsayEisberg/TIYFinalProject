@@ -472,17 +472,27 @@ ot-layout {
     .profilePage {
       padding-left: 260px;
     }
-    .auditorium {
+    ot-layout{
       padding-left: 260px;
     }
   }
 }
 
-#acctInfo, #eventInfo {
+#leftSide {
+    width: 48%;
+}
+
+#acctInfo, #eventInfo, #chartWrap {
   border: 1px solid #d0d0d0;
-  width: 48%;
+
   margin: 0 7px 0 7px;
   padding: 0 10px 30px 20px;
+}
+
+#chartWrap {
+  margin: 12px 7px 0 7px;
+  padding: 0 30px 30px 30px;
+
 }
 
 //event listing info
@@ -600,6 +610,9 @@ ot-layout {
   @include transform(rotate(45deg));
 }
 
+#otherChart {
+  display: none;
+}
 #large {
     background: -webkit-linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(../images/group1.jpg);
     background: -o-linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(../images/group1.jpg);

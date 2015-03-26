@@ -5,16 +5,18 @@
     <h1 ng-controller="UserController as userCtrl">Welcome {{userCtrl.singleUser.name}}</h1>
     <div class="row">
       <div ng-controller="UserController as userCtrl">
-          <div class="col-md-6" id="acctInfo">
-            <h3>Account Information</h3>
-            <p>Name: {{userCtrl.singleUser.name}}</p>
-            <p>Username: {{userCtrl.singleUser.username}}</p>
-            <p>Email: {{userCtrl.singleUser.email}}</p>
-<!--             <p>Blurb: {{userCtrl.singleUser.blurb}}</p>
- -->            <div class="acctEdit">
-              <a href="">Edit Account Information</a>
+          <div class="col-md-6" id="leftSide">
+            <div id="acctInfo">
+              <h3>Account Information</h3>
+              <p>Name: {{userCtrl.singleUser.name}}</p>
+              <p>Username: {{userCtrl.singleUser.username}}</p>
+              <p>Email: {{userCtrl.singleUser.email}}</p>
             </div>
-        </div>
+            <div id="chartWrap">
+              <h3>User Activity</h3>
+              <canvas id="doughnut" class="chart chart-doughnut" data="data" labels="labels" legend="true"></canvas> 
+           </div>
+          </div>
 
       <div class="col-md-6" id="eventInfo">
           <h3>Event Listing</h3>
@@ -27,8 +29,8 @@
               </li>
             </ul>
             <div class="createEvent">
-            <button ng-click="userCtrl.toggleShow()" class="createBtn">Create New Event <i class="fa fa-angle-double-down"></i>
-</button></div>
+            <button ng-click="userCtrl.toggleShow()" class="createBtn">Create New Event <i class="fa fa-angle-double-down"></i></button>
+            </div>
             <div class="newRoom" ng-show="userCtrl.form">
               <form ng-submit="userCtrl.addNewEvent(newEvent)">
                 <div class="newEventForm">
@@ -69,6 +71,8 @@
         </div>
       </div>
     </div>
+  
+    
   </div>
   <div class="sidebar">
     <ul>
