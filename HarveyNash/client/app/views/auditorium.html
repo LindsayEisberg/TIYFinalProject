@@ -33,7 +33,7 @@
           <li ng-class="{'present': present({{user.id}}), 'center-stage': isCenterStage({{user.id}})}">
 
             <span class="subscribeName">{{ user.username }}</span>
-            <button  class="enterRoomBtn" ng-click="centerStageToggle({{user.id}})" ng-if="credData.role == 'moderator'" ng-show="present({{user.id}})"></button>
+            <button  class="enterRoomBtn" ng-click="centerStageToggle({{user.id}})" ng-if="credData.role == 'moderator'" ng-show="present({{user.id}})">+</button>
 
           </li>
         </ul>
