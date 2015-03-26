@@ -26,7 +26,6 @@
 
     var getEvents = function () {
       return $http.get(eventUrl);
-      // return events;
     };
       
     var getSingleEvent = function(eventId) {
@@ -62,7 +61,6 @@
         getUsers: getUsers,
         getSingleUser: getSingleUser,
         editUser: updateInfo,
-        // events: events,
         getEvents: getEvents,
         getEvent: getSingleEvent,
         addNewEvent: addNewEvent

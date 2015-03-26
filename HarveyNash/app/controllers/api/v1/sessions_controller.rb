@@ -29,6 +29,7 @@ module Api
         session = Session.new
         session.name = params[:name]
         session.description = params[:description]
+        session.start_time = params[:date]
         # TODO: need date
         # TODO: need topic
         session.active = true;

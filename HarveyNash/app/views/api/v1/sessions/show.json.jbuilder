@@ -1,7 +1,7 @@
 json.session do
   json.id @session.id
   json.name @session.name
-  json.created @session.created_at  
+  json.date @session.start_time
   json.description @session.description
   json.active @session.active
   json.moderators @moderators do |moderator| 
