@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150324135654) do
+ActiveRecord::Schema.define(version: 20150326000947) do
 
   create_table "session_users", force: :cascade do |t|
     t.integer  "session_id",                   null: false
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20150324135654) do
     t.datetime "updated_at",  null: false
     t.string   "name"
     t.text     "description"
+    t.string   "start_time"
   end
 
   create_table "tokens", force: :cascade do |t|
