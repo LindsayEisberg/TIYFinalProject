@@ -63,6 +63,7 @@
         .error( function(error) {
           console.log("There be an air-roar!");
         });
+        
 
       // userCtrl.event = UserService.getEvent();
 
