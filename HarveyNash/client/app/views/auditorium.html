@@ -31,8 +31,10 @@
         <h3 class="auditSide-Header">Audience</h3>
         <ul ng-repeat="user in subscribers">
           <li ng-class="{'present': present({{user.id}}), 'center-stage': isCenterStage({{user.id}})}">
+
             <span class="subscribeName">{{ user.username }}</span>
-            <button  class="enterRoomBtn" ng-click="centerStageToggle({{user.id}})" ng-if="credData.role == 'moderator'">+</button>
+            <button  class="enterRoomBtn" ng-click="centerStageToggle({{user.id}})" ng-if="credData.role == 'moderator'" ng-show="present({{user.id}})"></button>
+
           </li>
         </ul>
       </div>

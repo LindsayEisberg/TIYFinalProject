@@ -20,7 +20,8 @@
           <h3>Event Listing</h3>
             <ul>
               <li ng-repeat="sessionEvent in userCtrl.events">
-                <a href="#/auditorium/{{sessionEvent.id}}?userid={{user.id}}"><h4 class="eventName">{{sessionEvent.name}}</h4></a>
+
+                <a href="#/auditorium/{{sessionEvent.id}}?userId={{user.id}}"><h4 class="eventName">{{sessionEvent.name}}</h4></a>
                 <p><span class="eventDescrip">{{sessionEvent.description}}</span><span class="eventTime">{{sessionEvent.date | date: 'short'}}</span></p>
                 <hr>
               </li>

@@ -8,7 +8,6 @@
       $scope.roomId = $routeParams.roomId;
       $scope.currentUserId = $routeParams.userId;
       $scope.roomMembers = [];
-      $scope.roomMembers.push(Number($scope.currentUserId));
       $scope.stageMembers = [];
       $scope.showIt = false;
 
@@ -64,11 +63,14 @@
                 });
               };
               if ((session.is && session.is('connected')) || session.connected) {
+                console.log('65:CONNECTED');                
                 connectDisconnect(true);
+                $scope.initialized = true;
                 $scope.session.signal({type:'stageChange'});
                 $scope.session.signal({type:'infoChange'});
               };
               $scope.session.on('sessionConnected', function() {
+                console.log('71:sessionConnected');                
                 connectDisconnect.bind($scope.session, true);
                 $scope.session.signal({type:'stageChange'});
                 $scope.session.signal({type:'infoChange'});
@@ -76,13 +78,15 @@
               $scope.session.on('sessionDisconnected', connectDisconnect.bind($scope.session, false));
               // register for the signals we need
               $scope.session.on("signal:infoChange", function(event) {
-                console.log("Room info has changed!!!");
+                console.log('79:signal:infoChange');
                 $scope.$apply( function() {
                   $scope.roomMembers = _.map($scope.session.connections.where(),
                                              function(con) { return Number(con.data); });
+                  console.log('RoomMembers: ' + $scope.roomMembers);
                 });
               });
               $scope.session.on("signal:addToCenterStage", function(event) {
+                console.log('86:singal:addToCenterStage');
                 var userId = event.data;
                 console.log("Adding user to center stage: " + userId);
                 $scope.$apply(function(){
@@ -90,6 +94,7 @@
                 });
               });
               $scope.session.on("signal:removeFromCenterStage", function(event) {
+                console.log('94:signal:removeFromCenterStage');
                 var userId = event.data;
                 console.log("Removing user from center stage: " + userId);
                 var idx = $scope.stageMembers.indexOf(userId);
@@ -108,7 +113,6 @@
                 $scope.session.signal({type:'infoChange'});
               });
               $scope.streams = OTSession.streams;
-              $scope.initialized = true;
             });
           });
       };
@@ -146,11 +150,13 @@
       // return true if the given user_id is currently on the center
       // stage
       $scope.isCenterStage = function(userId) {
-        return _.includes($scope.stageMembers, Number(userId));
+        return $scope.initialized && _.includes($scope.stageMembers, Number(userId));
       };
 
       $scope.present = function(userId) {
-        return $scope.initialized && _.includes($scope.roomMembers, userId);
+        return $scope.initialized &&
+          ( userId == Number($scope.currentUserId) ||
+            _.includes($scope.roomMembers, userId) );
       };
 
       // run teh codez
