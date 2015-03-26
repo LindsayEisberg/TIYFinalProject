@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150326003415) do
+ActiveRecord::Schema.define(version: 20150326174251) do
+
+  create_table "questions", force: :cascade do |t|
+    t.text     "text"
+    t.boolean  "open",       default: true
+    t.integer  "order_idx",                 null: false
+    t.integer  "session_id",                null: false
+    t.integer  "user_id",                   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "session_users", force: :cascade do |t|
     t.integer  "session_id",                   null: false
