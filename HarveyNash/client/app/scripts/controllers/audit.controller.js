@@ -9,6 +9,7 @@
       $scope.currentUserId = $routeParams.userId;
       $scope.roomMembers = [];
       $scope.stageMembers = [];
+      $scope.questions = [];
       $scope.showIt = false;
 
       $scope.init = function() {
@@ -102,6 +103,10 @@
                   $scope.stageMembers.splice(idx, 1);
                 });
               });
+              $scope.session.on("signal:questionAsked", function(event) {
+                console.log('signal:questionAsked');
+                $scope.getQuestions();
+              });
               $scope.session.on('connectionCreated'), function(event) {
                 var userId = JSON.parse(event.connection.data);
                 console.log("User has joined room: " + userId);
@@ -119,11 +124,33 @@
 
       // add or remove a user from center stage
       $scope.centerStageToggle = function(userId) {
-        if ($scope.isCenterStage(userId)) {
-          $scope.centerStageRemove(userId);
-        } else {
-          $scope.centerStageAdd(userId);
-        };
+        // if the user is a moderator...
+        var moderatorIds = _.map($scope.moderators, function(obj) { return obj.id; });
+        if (_.includes(moderatorIds, Number($scope.currentUserId))) {
+          // ...perform the requested toggle
+          if ($scope.isCenterStage(userId)) {
+            $scope.centerStageRemove(userId);
+          } else {
+            $scope.centerStageAdd(userId);
+          };
+        }
+      };
+
+      // answer a question
+      $scope.answerQuestion = function(question) {
+        // if the user is a moderator...
+        var moderatorIds = _.map($scope.moderators, function(obj) { return obj.id; });
+        if (_.includes(moderatorIds, Number($scope.currentUserId))) {
+          // ...add the user to the stage if the are not already
+          console.log("Answering question:" + question);
+          if (!$scope.isCenterStage(question.user_id)) {
+            $scope.centerStageAdd(question.user_id);
+          }
+          RoomService.deleteQuestion(question.id)
+            .success( function() {
+              $scope.session.signal({type:'questionAsked'});
+            });
+          };
       };
       
       // put a user on the center stage
@@ -137,16 +164,6 @@
         $scope.session.signal({type:'removeFromCenterStage', data:userId});
       };
 
-
-      //initializing text chat for users in a session
-      $scope.addNewMessage = function (newMessage) {
-        // RoomService.addNewMessage(newMessage);
-        $scope.posts.push(newMessage);
-        console.log(newMessage);
-        $scope.newMessage = {};
-        console.log(messages);
-
-};
       // return true if the given user_id is currently on the center
       // stage
       $scope.isCenterStage = function(userId) {
@@ -157,6 +174,27 @@
         return $scope.initialized &&
           ( userId == Number($scope.currentUserId) ||
             _.includes($scope.roomMembers, userId) );
+      };
+
+      // get all the questions
+      $scope.getQuestions = function() {
+        RoomService.getQuestions($scope.roomId)
+          .success( function(data) {
+            console.log(data);
+            $scope.questions = data;
+          });
+      };
+      $scope.getQuestions();
+
+      // ask a question in the room
+      $scope.askQuestion = function(newQuestionText, order) {
+        var questionData = {text: newQuestionText, user_id: $scope.currentUserId, session_id: $scope.roomId, order_idx: 99};
+        console.log(questionData);
+        RoomService.createQuestion($scope.roomId, questionData)
+          .success( function(data) {
+            $scope.questions.push(data);
+            $scope.session.signal({type:'questionAsked'});
+          });
       };
 
       // run teh codez

@@ -23,8 +23,10 @@
       </div>
       <div class="user-list questions">
         <h3 class="auditSide-Header">Questions</h3>
+        <input name="question" type="text" ng-model="newQuestionText" placeholder="Enter question for queue"/>
+        <button type="submit" ng-click="askQuestion(newQuestionText)">Enter</button>
         <ul ng-repeat="question in questions">
-          <li>question</li>
+          <li ng-click="answerQuestion({{question}})">{{ question.text }}</li>
         </ul>
       </div>
       <div class="user-list audience">

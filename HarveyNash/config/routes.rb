@@ -84,7 +84,13 @@ Rails.application.routes.draw do
       get 'sessions/:id/close' => 'sessions#close'
       get 'sessions/:id/credentials' => 'sessions#credentials'
       get 'sessions/:id/token' => 'sessions#token'
-
+      # session -> questions
+      get 'sessions/:session_id/questions' => 'questions#index'
+      get 'questions/:id' => 'questions#show'
+      post 'sessions/:session_id/questions' => 'questions#create'
+      put 'questions/:id' => 'questions#update'
+      patch 'questions/:id' => 'questions#update'
+      delete 'questions/:id' => 'questions#destroy'
     end
   end
 end

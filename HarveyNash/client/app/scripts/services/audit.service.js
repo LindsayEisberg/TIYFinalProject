@@ -39,6 +39,23 @@
         return $http.get(url + '/' + roomId);
       };
 
+      var getQuestions = function(roomId) {
+        return $http.get(url + '/' + roomId + '/questions');
+      };
+
+      var createQuestion = function(roomId, questionData) {
+        var postUrl = url + '/' + roomId + '/questions'
+        return $http.post(postUrl, questionData);
+      };
+
+      var updateQuestion = function(questionId, data) {
+        return $http.patch('http://localhost:3000/api/v1/questions/' + questionId );
+      };
+
+      var deleteQuestion = function(questionId) {
+        return $http.delete('http://localhost:3000/api/v1/questions/' + questionId);
+      };
+
       // var addNewMessage = function (userId, message) {
       //   console.log("get message:" messages);
       //   return $http.post(url + '/' + '/' messages);
@@ -53,6 +70,10 @@
         declareExit: declareExit,
         getCredentials: getCredentials,
         getRoomData: getRoomData,
+        getQuestions: getQuestions,
+        createQuestion: createQuestion,
+        updateQuestion: updateQuestion,
+        deleteQuestion: deleteQuestion
         // addNewMessage: addNewMessage
       };
 
