@@ -100,6 +100,13 @@ h4 {
    font-size: 1.2em;
  }
 
+ h5 {
+  font-family: $minion;
+  font-size: 18px;
+  color: $light2;
+  margin-top: 25px;
+ }
+
 //main page
 
 
@@ -377,8 +384,68 @@ ot-layout {
   bottom: 0;
 }
 
+.toggleBtn {
+  text-decoration: none;
+  font-size: 30px;
+  width:30px;
+  height:30px;
+  color: $dark;
+  @include transition();
+  @include position(fixed, 20px 0 0 250px);
+  z-index: 1;
+  cursor: pointer;
+  &:hover {
+    color:$accent2;
+    @include transition(all .5s);
+  }
+}
+
+.auditSidebar {
+  @include position(fixed, 0px 0 0px 0px);
+  @include transition();
+  width: 230px;
+  padding: 30px 15px 30px 30px;
+  background: #333;
+  z-index:0;
+  li {
+    font-family: $minion;
+    font-size: 18px;
+    margin-bottom: 20px;
+    -webkit-font-smoothing:antialiased;
+    display: flex;
+    justify-content: space-between;
+  a {
+    color: $lightest;
+    &:hover {
+      color: $accent2;
+      @include transition(all .4s ease);
+      }
+    }
+  }
+}
+
+#auditToggle {
+  display: none;
+  &:checked + .audit-wrap{
+    .auditSidebar {
+      left: -270px;
+    }
+    .toggleBtn {
+      left: 30px;
+    }
+
+    ot-layout{
+      padding-left: 0px;
+    }
+  }
+}
+
 .user-list {
   color: $light2;
+}
+
+.audience {
+  margin-top: 50px;
 }
 
 .enterRoomBtn {
@@ -395,7 +462,6 @@ ot-layout {
 .present {
   font-weight: bold;
   text-transform: uppercase;
-  text-decoration: underline;
   font-size: 1.4em;
 }
 
@@ -409,6 +475,61 @@ ot-layout {
   font-family: $minion;
 }
 
+.questions {
+  margin-bottom: 10px;
+}
+
+.questionLine {
+  border-top: 1px solid $light2;
+}
+
+.questionInput {
+  background: $lightest;
+  width: 88%;
+  border: 0;
+  height: 35px;
+  color: $dark;
+  padding-left: 5px;
+
+}
+
+#chevron {
+  color: $gray;
+  background-color: $lightest;
+  padding: 10px 6px 11px 6px;
+    &:hover {
+    color: $accent;
+    @include transition();
+  }
+}
+
+.questionBtn {
+  // display: block;
+  // float: right;
+  // margin-top:10px;
+  // background: #f6f7f7;
+  // border: 0;
+  // color: $dark;
+  padding: 0;
+  margin:0;
+  border: 0;
+}
+
+
+
+.questionText {
+  margin-bottom: -35px;
+  cursor: pointer;
+  border-bottom: 1px solid $light2;
+  width: 160px;
+  padding-bottom: 10px
+
+  
+}
+
+// .qList {
+//   margin-top: 22px;
+// }
 //profile page
 .profilePage {
   position: relative;
@@ -472,9 +593,7 @@ ot-layout {
     .profilePage {
       padding-left: 260px;
     }
-    ot-layout{
-      padding-left: 260px;
-    }
+
   }
 }
 
@@ -628,7 +747,6 @@ ot-layout {
     z-index: 0;
 
   }
-
 
 .modal-backdrop {
   z-index: 0;

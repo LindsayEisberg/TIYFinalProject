@@ -1,8 +1,8 @@
 
 
-<input type="checkbox" id="sidebarToggle">
-<div class="page-wrap">
-  <label for="sidebarToggle" class="toggle">☰</label>
+<input type="checkbox" id="auditToggle">
+<div class="audit-wrap">
+  <label for="auditToggle" class="toggleBtn">☰</label>
 <div class="container auditorium">
     <div id="session" ng-class="{'session-connected': connected}">
       <ot-layout props="{animate:true,bigFixedRatio:true}" class="sessionLayout">
@@ -14,7 +14,7 @@
 
 
 
-    <div class="sidebar">
+    <div class="auditSidebar">
       <div class="user-list moderators">
         <h3 class="auditSide-Header">Moderators</h3>
         <ul ng-repeat="user in moderators">
@@ -23,10 +23,13 @@
       </div>
       <div class="user-list questions">
         <h3 class="auditSide-Header">Questions</h3>
-        <input name="question" type="text" ng-model="newQuestionText" placeholder="Enter question for queue"/>
-        <button type="submit" ng-click="askQuestion(newQuestionText)">Enter</button>
-        <ul ng-repeat="question in questions">
-          <li ng-click="answerQuestion({{question}})">{{ question.text }}</li>
+        <input name="question" type="text" class="questionInput" ng-model="newQuestionText" ng-enter="askQuestion(newQuestionText)" placeholder="Enter question for queue"/ ><span class="questionSpan"><button type="submit" class="questionBtn" ng-click="askQuestion(newQuestionText)"><i id="chevron" class="fa fa-chevron-right"></i>
+</button></span>
+        <ul class="qList">
+          <li ng-repeat="question in questions">
+            <h5 ng-click="answerQuestion({{question}})" class="questionText">{{ question.text }}</h5>
+          </li>
+          
         </ul>
       </div>
       <div class="user-list audience">

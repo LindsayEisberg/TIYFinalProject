@@ -194,6 +194,8 @@
           .success( function(data) {
             $scope.questions.push(data);
             $scope.session.signal({type:'questionAsked'});
+
+
           });
       };
 
